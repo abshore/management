@@ -1,0 +1,93 @@
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        <div style="text-align: left; float: left; text-decoration: underline;font-size: larger">Liste des Affectations</div>
+        <div style="text-align: right">
+            <a id="ajoutAffectation" class="btn btn-primary" url="{{ path('affectationplan_new') }}" href="#">
+                Ajouter Affectation
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-condensed table-hover">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Classe</th>
+                    <th>Matiere</th>
+                    <th>Groupe</th>
+                    <th>Prof</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('affectationplan_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.classe }}</td>
+                        <td>{{ entity.matiere }}</td>
+                        <td>{{ entity.groupe }}</td> 
+                        <td>{{ entity.prof }}</td>
+                        <td style="text-align: right">
+                            <a class="btn btn-danger btn-xs" href="{{ path('affectationplan_delete', { 'id': entity.id }) }}" onclick="return confirm('Vous êtes sûr de vouloir supprimer cette rubrique?')">Supprimer</a>
+                            <a class="modifAffectation btn btn-success btn-xs" href="#" url="{{ path('affectationplan_edit', { 'id': entity.id }) }}">Modifier</a>
+                        </td>
+                    </tr>
+        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="Affectation" style="display: none;"></div>
+    <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script type="text/javascript">
+
+                                $('#ajoutAffectation').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Affectation").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Ajouter Affectation',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                $('a.modifAffectation').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Affectation").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Modifier Affectation',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+        </script>

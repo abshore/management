@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<h3>Questions reçues :</h3>
+
+{% if list==null%}
+<div class="alert alert-info">pas de notification</div>
+{% else %}
+
+<table class="table table-condensed">
+
+{# table body #}
+{% for item in pagination %}
+<tr {% if loop.index is odd %} style="background-color: #dfdfdf;font: 14px/24px sans-serif;"{% endif %}>
+  <td ><a href="{{ path('delete_question',{'id':item.id}) }}"><i class="glyphicon glyphicon-trash"></i></a>{%if item.questionlu==0%}<td style="font-weight: bold;text-decoration: blink; font-size: medium;">{%else%}<td>{%endif%}{{item.user.username}}</td></td>{%if item.questionlu==0%}<td style="font-weight: bold;text-decoration: blink; font-size: medium;">{%else%}<td>{%endif%}<a href="{{path('detail_question',{'id': item.id})}}">{{item.matiere}}</a></td>{%if item.questionlu==0%}<td style="font-weight: bold;text-decoration: blink; font-size: medium;">{%else%}<td>{%endif%}{{item.datequestion|date("F jS \\a\\t g:ia", "Europe/Paris")}}</td>
+</tr>
+{% endfor %}
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+	{%endif%}
+
+{% endblock %}

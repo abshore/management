@@ -1,0 +1,6 @@
+gestion_absence_note_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GestionAbsenceNoteBundle:Default:index }
+GestionAbsenceNoteBundle_absence:
+    resource: "@GestionAbsenceNoteBundle/Resources/config/routing/absence.yml"
+    prefix:   /absence

@@ -1,0 +1,64 @@
+<?php
+
+namespace User\PartageBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MotCle
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="User\PartageBundle\Entity\MotCleRepository")
+ */
+class MotCle
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelleMotCle", type="string", length=255,unique = true)
+     */
+    private $libelleMotCle;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelleMotCle
+     *
+     * @param string $libelleMotCle
+     * @return MotCle
+     */
+    public function setLibelleMotCle($libelleMotCle)
+    {
+        $this->libelleMotCle = $libelleMotCle;
+    
+        return $this;
+    }
+
+    /**
+     * Get libelleMotCle
+     *
+     * @return string 
+     */
+    public function getLibelleMotCle()
+    {
+        return $this->libelleMotCle;
+    }
+}

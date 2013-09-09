@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+   
+
+    <form action="{{ path('panier_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <div class="panel-footer" style="text-align: right">
+    <p>
+        <button class="btn" style="background-color: silver" type="submit">Create</button>
+                    </p></div>
+    </form>
+
+        
+{% endblock %}

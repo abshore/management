@@ -1,0 +1,9 @@
+user_news_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: UserNewsBundle:Default:index }
+user_news:
+    resource: "@UserNewsBundle/Resources/config/routing/nouvelle.yml"
+    prefix:   /nouvelle
+info_news:
+    resource: "@UserNewsBundle/Resources/config/routing/infoNouvelle.yml"
+    prefix:   /infoNouvelle

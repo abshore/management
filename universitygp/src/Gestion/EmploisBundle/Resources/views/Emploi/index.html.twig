@@ -1,0 +1,109 @@
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        <div style="text-align: left; float: left; text-decoration: underline;font-size: larger">Liste des Seances</div>
+        <div style="text-align: right">
+            <a id="ajoutSeance" class="btn btn-primary" url="{{ path('emploi_new') }}" href="#">
+                Ajouter Seance
+            </a>
+            <a id="voirEmplois" class="btn btn-default" href="{{ path('emploi_voirEmplois') }}">
+                Visualisez Emplois
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+
+                    <th>Classe</th>
+                    <th>Groupe</th>
+                    <th>Matiere</th>
+                    <th>Prof</th>
+                    <th>Jour</th>
+                    <th>Heuredeb</th>
+                    <th>Heurefin</th>
+                    <th>Salle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for entity in entities %}
+                    <tr>
+
+                        <td>{{entity.classe}}</td>
+                        <td>{{entity.groupe}}</td>
+                        <td>{{entity.matiere}}</td>
+                        <td>{{entity.prof}}</td>
+                        <td>{% if entity.jour %}{{ entity.jour|date('Y-m-d') }}{% endif %}</td>
+                        <td>{{ entity.heureDeb|date('H:i') }}</td>
+                        <td>{{ entity.heureFin|date('H:i') }}</td>
+                        <td>{{entity.salle}}</td>
+                        <td style="text-align: right">
+                            <a class="btn btn-danger btn-xs" href="{{ path('emploi_delete', { 'id': entity.id }) }}" onclick="return confirm('Vous êtes sûr de vouloir supprimer cette rubrique?');">Supprimer</a>
+                            <a class="modifSeance btn btn-success btn-xs" href="#" url="{{ path('emploi_edit', { 'id': entity.id }) }}">Modifier</a>
+                        </td>
+                    </tr>
+        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div id="Seance" style="display: none;"></div>
+    <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script type="text/javascript">
+                        $('#ajoutSeance').click(function() {
+                            var url = $(this).attr('url');
+                            $("#Seance").load(url, function() {
+                                $(this).dialog({
+                                    height: 'auto',
+                                    width: 'auto',
+                                    modal: true,
+                                    title: 'Ajouter Seance',
+                                    position: 'center',
+                                    overlay: {
+                                        backgroundColor: '#000',
+                                        opacity: 0.5
+                                    },
+                                    close: function() {
+
+                                        $(this).dialog('close');
+                                    }
+
+                                });
+                            });
+                        });
+
+                        $('a.modifSeance').click(function() {
+                            var url = $(this).attr('url');
+                            $("#Seance").load(url, function() {
+                                $(this).dialog({
+                                    height: 'auto',
+                                    width: 'auto',
+                                    modal: true,
+                                    title: 'Modifier Seance',
+                                    position: 'center',
+                                    overlay: {
+                                        backgroundColor: '#000',
+                                        opacity: 0.5
+                                    },
+                                    close: function() {
+
+
+                                        $(this).dialog('close');
+                                    }
+
+                                });
+                            });
+                        });
+
+
+
+        </script>

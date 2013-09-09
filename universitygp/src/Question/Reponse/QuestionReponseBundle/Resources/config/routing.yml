@@ -1,0 +1,33 @@
+question_reponse_question_reponse_homepage:
+    pattern:  /notification/questions
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Question:index }
+reponse_homepage:
+    pattern:  /notification/reponse
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Reponse:index }
+ajout_question:
+    pattern:  /notification/question
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Question:create }
+delete_question:
+    pattern:  /notification/question/delete/{id}
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Question:delete }
+detail_question:
+    pattern:  /notification/question/detail/{id}
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Question:detail }
+reponse_question:
+    pattern:  /reponse/{id}
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Reponse:create }
+delete_reponse:
+    pattern:  /notification/reponse/delete/{id}
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Reponse:delete }
+detail_reponse:
+    pattern:  /notification/reponse/detail/{id}
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Reponse:detail }
+moteur_di_recherche:
+    pattern:  /recherche
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Question:recherche }
+resultat:
+    pattern:  /resultat/{search}
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Question:resultat }
+detail_recherche:
+    pattern:  /resultat/detail/{id}
+    defaults: { _controller: QuestionReponseQuestionReponseBundle:Question:detailrecherche }

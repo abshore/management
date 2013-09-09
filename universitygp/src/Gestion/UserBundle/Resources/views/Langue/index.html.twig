@@ -1,0 +1,152 @@
+
+
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
+     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" />
+
+    <h1>Langue list</h1>
+
+     <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+        <thead>
+            <tr>
+               
+                <th>Titre</th>
+                <th>Niveau</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.titre }}</td>
+                <td>{{ entity.niveau }}</td>
+                <td>
+                <ul>
+                   
+                        <a class="delet btn btn-danger" href="#" url="{{ path('langue_show', { 'id': entity.id }) }}">Supprimer</a>
+                   
+                        <a class="edit btn btn-success" href="#" url="{{ path('langue_edit', { 'id': entity.id }) }}">edit</a>
+                   
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+     
+            <a id="ajoutLan" class="btn btn-primary" url="{{ path('langue_new', { 'idcursus': idcursus }) }}" href="#">
+                +ADD
+            </a>
+       
+    </ul>
+<div id="La" style="display: none;"></div>
+    
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    {# Ajoutez ces javascripts si vous comptez vous servir des
+fonctionnalités du bootstrap Twitter #}
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+ <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+             
+       
+            <script type="text/javascript">
+                   $(function() {
+   $( ".form-control.date" ).datetimepicker();
+   });
+
+            </script>
+		
+    <script type="text/javascript">
+                                $('#ajoutLan').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#La").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Ajouter Une langue',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                            
+
+
+
+        </script>
+
+<script type="text/javascript">
+                                $('a.delet').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#La").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Supprimer une experience',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                
+
+
+        </script>
+
+   <script type="text/javascript">
+                                $('a.edit').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#La").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Modifier une experience',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                
+
+
+        </script>
+
+ 
+

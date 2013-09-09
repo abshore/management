@@ -1,0 +1,67 @@
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+<form class="form-horizontal" action="{{ path('affectationplan_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_widget(edit_form) }}
+        <div class="panel-footer" style="text-align: right">
+        <p>
+            <input type="button" id="btn" class="btn btn-info btn-xs" value="Modifier"/>
+        </p></div>
+    </form>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $.get("{{ path('affectation_getgroupemodif', { 'id': entity.id }) }}",
+                function(data) {
+                    $('#gestion_emploisbundle_affectationplantype_groupe').empty();
+                    $('#gestion_emploisbundle_affectationplantype_groupe').append(data.groupes);
+                    $('#gestion_emploisbundle_affectationplantype_groupe').val(data.groupe);
+                },
+                "json");
+    });
+
+
+    $('#gestion_emploisbundle_affectationplantype_classe').change(function() {
+            var classe = $('#gestion_emploisbundle_affectationplantype_classe').val();
+            $.post("{{ path('affectationplan_getmatiere') }}", {
+                classe: classe
+            }, function(data) {
+                $('#gestion_emploisbundle_affectationplantype_matiere').empty();
+                $('#gestion_emploisbundle_affectationplantype_matiere').append(data.matieres);
+                $('#gestion_emploisbundle_affectationplantype_groupe').empty();
+                $('#gestion_emploisbundle_affectationplantype_groupe').append(data.groupes);
+            },
+                    "json"
+                    );
+        });
+
+   
+
+        $('#btn').click(function() {
+
+            var classe = $('#gestion_emploisbundle_affectationplantype_classe').val();
+            var matiere = $('#gestion_emploisbundle_affectationplantype_matiere').val();
+            var groupe = $('#gestion_emploisbundle_affectationplantype_groupe').val();
+            var prof = $('#gestion_emploisbundle_affectationplantype_prof').val();
+            //alert(chapitres);
+            $.post("{{ path('affectation_modifieraffectation', { 'id': entity.id }) }}", {
+                classe: classe,
+                matiere: matiere,
+                groupe: groupe,
+                prof: prof
+            }, function(data) {
+                alert(data.msg);
+                $('#Affectation').dialog('close');
+                self.location.reload();
+            },
+                    "json"
+                    );
+
+        });
+    
+    </script>

@@ -1,0 +1,106 @@
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+<form class="form-horizontal" action="{{ path('emploi_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <input type="hidden" name="_method" value="PUT" />
+    <div class="panel-body">
+        <div class="form-group">
+{{ form_widget(edit_form) }}
+            </div>
+        </div>
+        <div class="panel-footer" style="text-align: right">
+            <p>
+                <button id="btn" class="btn btn-success" type="button">Modifier</button>
+            </p>
+        </div>
+    </form>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#gestion_emploisbundle_emploimodiftype_heureDeb').timepicker({
+                ampm: true,
+                hour: 13,
+                minute: 15,
+                hourMin: 8,
+                hourMax: 18
+            });
+
+            $('#gestion_emploisbundle_emploimodiftype_heureFin').timepicker({
+                ampm: true,
+                hour: 13,
+                minute: 15,
+                hourMin: 8,
+                hourMax: 18
+            });
+
+
+
+        });
+
+        </script>
+        <script type="text/javascript">
+            $(function() {
+                $("#gestion_emploisbundle_emploimodiftype_jour").datepicker({dateFormat: 'dd-mm-yy', showWeek: true, firstDay: 1})
+                        ;
+            });
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+
+                    $.get("{{ path('emploi_getgroupemodif', { 'id': entity.id }) }}",
+                            function(data) {
+                                $('#gestion_emploisbundle_emploimodiftype_groupe').empty();
+                                $('#gestion_emploisbundle_emploimodiftype_groupe').append(data.groupes);
+                                $('#gestion_emploisbundle_emploimodiftype_groupe').val(data.groupe);
+                            },
+                            "json");
+                });
+
+                $('#gestion_emploisbundle_emploimodiftype_classe').change(function() {
+                    var classe = $('#gestion_emploisbundle_emploimodiftype_classe').val();
+                    $.post("{{ path('emploi_getmatiere') }}", {
+                        classe: classe
+                    }, function(data) {
+                        $('#gestion_emploisbundle_emploimodiftype_matiere').empty();
+                        $('#gestion_emploisbundle_emploimodiftype_matiere').append(data.matieres);
+
+
+                    },
+                            "json"
+                            );
+                });
+
+                $('#btn').click(function() {
+
+                    var classe = $('#gestion_emploisbundle_emploimodiftype_classe').val();
+                    var groupe = $('#gestion_emploisbundle_emploimodiftype_groupe').val();
+                    var matiere = $('#gestion_emploisbundle_emploimodiftype_matiere').val();
+                    var jour = $('#gestion_emploisbundle_emploimodiftype_jour').val();
+                    var heureDeb = $('#gestion_emploisbundle_emploimodiftype_heureDeb').val();
+                    var heureFin = $('#gestion_emploisbundle_emploimodiftype_heureFin').val();
+                    var salle = $('#gestion_emploisbundle_emploimodiftype_salle').val();
+
+                    //alert(chapitres);
+                    $.post("{{ path('emploi_modifierSeance', { 'id': entity.id }) }}", {
+                        classe: classe,
+                        groupe: groupe,
+                        matiere: matiere,
+                        jour: jour,
+                        heureDeb: heureDeb,
+                        heureFin: heureFin,
+                        salle: salle
+                    }, function(data) {
+                        alert(data.msg);
+                        $('#Seance').dialog('close');
+                        self.location.reload();
+                    },
+                            "json"
+                            );
+
+                });
+                </script>
+

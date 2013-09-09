@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Document</h1>
+
+      <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+      <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ entity.libelleNouvelle }}</td>
+            </tr>
+            <tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.descriptionNouvelle|raw }}</td>
+            </tr>
+            <tr>
+                <th>Débuté le</th>
+                <td>{{ entity.dateDebutNouvelle|date('d-m-Y') }}</td>
+            </tr>
+			            <tr>
+                <th>Fini le</th>
+                <td>{{ entity.dateFinNouvelle|date('d-m-Y') }}</td>
+            </tr>
+            
+                        </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+   
+
+   
+        <a class="btn btn-primary" href="{{ path('nouvelle') }}">
+            Revenir à la liste
+        </a>
+    
+        <a class="btn btn-success" href="{{ path('nouvelle_edit', { 'id': entity.id }) }}">
+            Modifier
+        </a>
+            
+        <a class="btn btn-success" href="{{ path('nouvelle_valider', { 'id': entity.id }) }}">
+           Valider
+        </a>
+    
+        <form action="{{ path('nouvelle_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button class="btn btn-danger" type="submit">Supprimer</button>
+        </form>
+    
+</ul>
+{% endblock %}

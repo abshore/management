@@ -1,0 +1,12 @@
+document:
+    pattern:  /
+    defaults: { _controller: UserPartageBundle:RecuperationDocument:index}
+document_recherche:
+    pattern:  /recherche
+    defaults: { _controller: UserPartageBundle:RecuperationDocument:recherche }
+document_show:
+    pattern:     /show/{id}
+    defaults: { _controller: UserPartageBundle:RecuperationDocument:show }
+document_download:
+    pattern:     /download/{id}
+    defaults: { _controller: UserPartageBundle:RecuperationDocument:download }

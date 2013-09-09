@@ -1,0 +1,47 @@
+classe:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:Classe:index" }
+
+classe_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:Classe:show" }
+
+classe_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:Classe:new" }
+
+classe_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:Classe:create" }
+    requirements: { _method: post }
+
+classe_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:Classe:edit" }
+
+classe_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:Classe:update" }
+    requirements: { _method: post|put }
+
+classe_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:Classe:delete" }
+    #requirements: { _method: post|delete }
+    
+classe_getniveau:
+    pattern:  /getNiveau
+    defaults: { _controller: "GestionEmploisBundle:Classe:getNiveau" }
+    requirements: { _method: post }
+classe_ajouterclasse:
+    pattern:  /ajouterClasse
+    defaults: { _controller: "GestionEmploisBundle:Classe:ajouterClasse" }
+    requirements: { _method: post }
+classe_getNiveauModif:
+    pattern:  /{id}/getNiveauModif
+    defaults: { _controller: "GestionEmploisBundle:Classe:getNiveauModif" }
+    requirements: { _method: get }
+classe_modifierclasse:
+    pattern:  /{id}/modifierClasse
+    defaults: { _controller: "GestionEmploisBundle:Classe:modifierClasse" }
+    requirements: { _method: post }

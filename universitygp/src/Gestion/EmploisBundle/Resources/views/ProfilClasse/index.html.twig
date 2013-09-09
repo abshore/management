@@ -1,0 +1,92 @@
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <div class="panel panel-default">
+<div class="panel-heading">
+        <div style="text-align: left; float: left; text-decoration: underline;font-size: larger">Liste des profils</div>
+        <div style="text-align: right">
+            <a id="ajouterProfil" class="btn btn-primary" class="btn btn-primary" href="#" url="{{ path('profilclasse_new') }}">
+                Ajouter Profil
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                
+                <th>Code</th>
+                <th>Libelle</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                
+                <td>{{ entity.code }}</td>
+                <td>{{ entity.libelle }}</td>
+                <td style="text-align: right">
+                <ul>
+                    
+                        <a class="btn btn-danger btn-xs" href="{{ path('profilclasse_delete', { 'id': entity.id }) }}" onclick="return confirm('Vous êtes sûr de vouloir quitter ce panier?')">Supprimer</a>
+                        <a href="#" class="modifier btn btn-success btn-xs" url="{{ path('profilclasse_edit', { 'id': entity.id }) }}">Modifier</a>
+                    
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+        
+    
+    
+    <div id="ProfilClasse" style="display: none"></div>
+
+            <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+            <script type="text/javascript">
+
+                                    $('#ajouterProfil').click(function() {
+                                        var url = $(this).attr('url');
+                                        $("#ProfilClasse").load(url, function() {
+                                            $(this).dialog({
+                                                height: 'auto',
+                                                width: 'auto',
+                                                modal: true,
+                                                title: 'Ajouter Profil',
+                                                position: 'center',
+                                                overlay: {
+                                                    backgroundColor: '#000',
+                                                    opacity: 0.5
+                                                },
+                                            });
+                                        });
+                                    });
+
+
+                                    $('a.modifier').click(function() {
+                                        var url = $(this).attr('url');
+                                        $("#ProfilClasse").load(url, function() {
+                                            $(this).dialog({
+                                                height: 'auto',
+                                                width: 'auto',
+                                                modal: true,
+                                                title: 'Modifier Profil',
+                                                position: 'center',
+                                                overlay: {
+                                                    backgroundColor: '#000',
+                                                    opacity: 0.5
+                                                },
+                                                close: function() {
+                                                    $(this).dialog('close');
+
+                                                }
+                                            });
+                                        });
+                                    });
+
+
+                </script>
+

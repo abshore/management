@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<br/><br/>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="#"><i class="glyphicon glyphicon-home glyphicon glyphicon-white"></i> Accueil</a></li>
+  <li><a href="{{ path('nouveau_message') }}"><i class="glyphicon glyphicon-pencil"></i> Nouveau Message</a></li>
+  <li><a href="{{ path('voir_msg') }}">{%if(count==0)%}<i class="glyphicon glyphicon-folder-open">{%else%}<i class="glyphicon glyphicon-envelope">{%endif%}</i> Boite de reception{%if count!=null%} <span class="badge">{{count}}</span> {%endif%}</a></li>
+  <li><a href="{{ path('msg_envoi') }}"><i class="glyphicon glyphicon-share"></i> Messages envoyés</a></li>
+  
+</ul>
+
+
+
+{% endblock %}

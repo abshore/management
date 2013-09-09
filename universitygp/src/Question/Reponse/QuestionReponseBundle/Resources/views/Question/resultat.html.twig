@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<h3>Résultat de votre recherche :</h3>
+
+{% if list==null%}
+<div class="alert alert-info">Aucun résultat correspond à votre recherche, réessayez avec d'autres mots!</div>
+{% else %}
+
+<table class="table table-condensed">
+<p class="text-info">Les sujets traitant votre recherche : </p>
+
+{# table body #}
+{% for item in pagination %}
+<tr {% if loop.index is odd %} style="background-color: #dfdfdf;font: 14px/24px sans-serif;"{% endif %}>
+  <td ><td>{{item.user.username}}</td><td><a href="{{path('detail_recherche',{'id': item.id})}}">{{item.matiere}}</a></td><td>{{item.datequestion|date("F jS \\a\\t g:ia", "Europe/Paris")}}</td>
+</tr>
+{% endfor %}
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+	{%endif%}
+
+{% endblock %}

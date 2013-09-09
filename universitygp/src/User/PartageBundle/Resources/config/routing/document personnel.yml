@@ -1,0 +1,25 @@
+document_personnel:
+    pattern:  /
+    defaults: { _controller: "UserPartageBundle:PartageDocument:affichListeDoc" }
+document_personnel_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: UserPartageBundle:Default:index }
+document_personnel_add:
+    pattern:     /add
+    defaults: { _controller: UserPartageBundle:PartageDocument:add }
+voir_doc:
+    pattern:     /voir
+    defaults: { _controller: UserPartageBundle:PartageDocument:voir }
+document_personnel_delete:
+    pattern:     /delete/{id}
+    defaults: { _controller: UserPartageBundle:PartageDocument:delete }
+document_personnel_show:
+    pattern:     /show/{id}
+    defaults: { _controller: UserPartageBundle:PartageDocument:show }
+document_personnel_edit:
+    pattern:     /edit/{id}
+    defaults: { _controller: UserPartageBundle:PartageDocument:edit}
+
+document_personnel_moteurDeRecherche:
+    pattern:     /recherche
+    defaults: { _controller: UserPartageBundle:PartageDocument:recherche}

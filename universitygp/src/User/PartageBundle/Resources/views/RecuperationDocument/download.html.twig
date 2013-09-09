@@ -1,0 +1,77 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    
+
+<div style="width: 80%; margin-left: 10%;margin-top: 50px;" class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Moteur de recherche</h3>
+  </div>
+  <div class="panel-body">
+    <form  class="form-inline" role="form" action="{{ path('username') }}" method="post">
+        <div class="form-group">
+          <input type="text" class="form-control" name="username" placeholder="Search">
+          
+ </div>
+            <div class="col-lg-3"> 
+            <select name="recherche" class="form-control">
+                <option value="username">Username</option>
+                <option value="nom">Nom</option>
+                <option value="prenom">Prenom</option>
+                <option value="email">Email</option>
+                
+</select>
+</div>
+            <button class="btn btn-default" type="submit">Chercher</button>
+        </form>
+  </div>
+</div>
+
+     <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+         <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Enabled</th>
+                <th>Locked</th>
+                <th>Expired</th>
+                <th>Expiresat</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+ {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('admin_show', { 'id': entity.username }) }}">{{ entity.username }}</a></td>
+                 <td>{{ entity.email }}</td>
+                <td>{{ entity.enabled }}</td>
+                <td>{{ entity.locked }}</td>
+                <td>{{ entity.expired }}</td>
+                <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+               <td>{{ entity.nom }}</td>
+                <td>{{ entity.prenom }}</td>
+            <td>
+                <ul>
+                 
+                        <a class="btn btn-primary" href="{{ path('admin_show', { 'id': entity.id }) }}">show</a>
+                    
+                        <a class="btn btn-success" href="{{ path('admin_edit', { 'id': entity.id }) }}">edit</a>
+                  
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+    
+            <a class="btn btn-primary" href="{{ path('admin_registration') }}">
+                Add Admin
+            </a>
+      
+    </ul>
+
+    {% endblock %}

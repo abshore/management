@@ -1,0 +1,30 @@
+langue:
+    pattern:   /{idcursus}/
+    defaults: { _controller: "GestionUserBundle:Langue:index" }
+
+langue_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionUserBundle:Langue:show" }
+
+langue_new:
+    pattern:  /new/{idcursus}/
+    defaults: { _controller: "GestionUserBundle:Langue:new" }
+
+langue_create:
+    pattern:  /create/{idcursus}/
+    defaults: { _controller: "GestionUserBundle:Langue:create" }
+    requirements: { _method: post }
+
+langue_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionUserBundle:Langue:edit" }
+
+langue_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionUserBundle:Langue:update" }
+    requirements: { _method: post|put }
+
+langue_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionUserBundle:Langue:delete" }
+    requirements: { _method: post|delete }

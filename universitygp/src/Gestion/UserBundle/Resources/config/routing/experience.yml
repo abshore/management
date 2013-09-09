@@ -1,0 +1,30 @@
+experience:
+    pattern:  /{idcursus}/
+    defaults: { _controller: "GestionUserBundle:Experience:index" }
+
+experience_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionUserBundle:Experience:show" }
+
+experience_new:
+    pattern:  /new/{idcursus}/
+    defaults: { _controller: "GestionUserBundle:Experience:new" }
+
+experience_create:
+    pattern:  /create/{idcursus}/
+    defaults: { _controller: "GestionUserBundle:Experience:create" }
+    requirements: { _method: post }
+
+experience_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionUserBundle:Experience:edit" }
+
+experience_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionUserBundle:Experience:update" }
+    requirements: { _method: post|put }
+
+experience_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionUserBundle:Experience:delete" }
+    requirements: { _method: post|delete }

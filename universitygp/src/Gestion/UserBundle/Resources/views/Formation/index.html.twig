@@ -1,0 +1,158 @@
+
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
+     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" />
+
+   
+    <h1>Formation list</h1>
+
+    <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+        <thead>
+            <tr>
+                <th>Niveau</th>
+                <th>Nomecole</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Pays</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.niveau }}</td>
+                <td>{{ entity.nomEcole }}</td>
+                <td>{% if entity.dateDebut %}{{ entity.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateFin %}{{ entity.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.pays }}</td>
+                <td>{{ entity.description }}</td>
+                <td>
+                <ul>
+               
+                        <a  class="delet btn btn-danger" href="#" url="{{ path('formation_show', { 'id': entity.id }) }}">Supprimer</a>
+                   
+                        <a  class="edit btn btn-success" href="#" url="{{ path('formation_edit', { 'id': entity.id }) }}">edit</a>
+               
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+      
+            <a id="ajoutformation" class="btn btn-primary ajoutformation" url="{{ path('formation_new', { 'idcursus': idcursus }) }}" href="#">
+                +ADD
+            </a>
+       
+    </ul>
+	<div id="Salle" style="display: none;"></div>
+   
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    {# Ajoutez ces javascripts si vous comptez vous servir des
+fonctionnalités du bootstrap Twitter #}
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+ <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+             
+       
+            <script type="text/javascript">
+                   $(function() {
+   $( ".form-control.date" ).datetimepicker();
+   });
+
+            </script>
+		
+    <script type="text/javascript">
+                                $('#ajoutformation').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Salle").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Ajouter Formation',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                
+
+
+        </script>
+
+   <script type="text/javascript">
+                                $('a.delet').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Salle").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Supprimer une formation',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                
+
+
+        </script>
+
+   <script type="text/javascript">
+                                $('a.edit').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Salle").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Modifier une formation',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                
+
+
+        </script>
+
+ 
+

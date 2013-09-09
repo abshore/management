@@ -1,0 +1,235 @@
+<?php
+
+namespace Gestion\EmploisBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PlanEtude
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Gestion\EmploisBundle\Entity\PlanEtudeRepository")
+ */
+class PlanEtude
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="Matiere",inversedBy="planetude")
+     * @ORM\JoinColumn(name="matiere_id", referencedColumnName="id")
+     */
+    private $matiere;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Formation",inversedBy="planetude")
+     * @ORM\JoinColumn(name="formation_id", referencedColumnName="id")
+     */
+    private $formation;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Diplome",inversedBy="planetude")
+     * @ORM\JoinColumn(name="diplome_id", referencedColumnName="id")
+     */
+    private $diplome;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbHeure", type="integer")
+     */
+    private $nbHeure;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chapitres", type="text")
+     */
+    private $chapitres;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="niveau", type="integer")
+     */
+    private $niveau;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbHCours", type="integer")
+     */
+    private $nbHCours;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbHTD", type="integer")
+     */
+    private $nbHTD;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbHTP", type="integer")
+     */
+    private $nbHTP;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nbHeure
+     *
+     * @param integer $nbHeure
+     * @return PlanEtude
+     */
+    public function setNbHeure($nbHeure)
+    {
+        $this->nbHeure = $nbHeure;
+    
+        return $this;
+    }
+
+    /**
+     * Get nbHeure
+     *
+     * @return integer 
+     */
+    public function getNbHeure()
+    {
+        return $this->nbHeure;
+    }
+
+    /**
+     * Set chapitres
+     *
+     * @param string $chapitres
+     * @return PlanEtude
+     */
+    public function setChapitres($chapitres)
+    {
+        $this->chapitres = $chapitres;
+    
+        return $this;
+    }
+
+    /**
+     * Get chapitres
+     *
+     * @return string 
+     */
+    public function getChapitres()
+    {
+        return $this->chapitres;
+    }
+
+    
+
+    
+    /**
+     * Set matiere
+     *
+     * @param \Gestion\EmploisBundle\Entity\Matiere $matiere
+     * @return PlanEtude
+     */
+    public function setMatiere(\Gestion\EmploisBundle\Entity\Matiere $matiere = null)
+    {
+        $this->matiere = $matiere;
+    
+        return $this;
+    }
+
+    /**
+     * Get matiere
+     *
+     * @return \Gestion\EmploisBundle\Entity\Matiere 
+     */
+    public function getMatiere()
+    {
+        return $this->matiere;
+    }
+
+    /**
+     * Set formation
+     *
+     * @param \Gestion\EmploisBundle\Entity\Formation $formation
+     * @return PlanEtude
+     */
+    public function setFormation(\Gestion\EmploisBundle\Entity\Formation $formation = null)
+    {
+        $this->formation = $formation;
+    
+        return $this;
+    }
+
+    /**
+     * Get formation
+     *
+     * @return \Gestion\EmploisBundle\Entity\Formation 
+     */
+    public function getFormation()
+    {
+        return $this->formation;
+    }
+
+    /**
+     * Set diplome
+     *
+     * @param \Gestion\EmploisBundle\Entity\Diplome $diplome
+     * @return PlanEtude
+     */
+    public function setDiplome(\Gestion\EmploisBundle\Entity\Diplome $diplome = null)
+    {
+        $this->diplome = $diplome;
+    
+        return $this;
+    }
+
+    /**
+     * Get diplome
+     *
+     * @return \Gestion\EmploisBundle\Entity\Diplome 
+     */
+    public function getDiplome()
+    {
+        return $this->diplome;
+    }
+
+    
+
+    /**
+     * Set niveau
+     *
+     * @param integer $niveau
+     * @return PlanEtude
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
+    
+        return $this;
+    }
+
+    /**
+     * Get niveau
+     *
+     * @return integer 
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+}

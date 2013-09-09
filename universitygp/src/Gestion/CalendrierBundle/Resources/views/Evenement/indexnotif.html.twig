@@ -1,0 +1,98 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+   
+    <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+        <thead>
+            <tr>
+                <th>Titre</th>
+               
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+       {% if entity.etat!=0%}
+            <tr>
+                <td>{{ entity.event.titre }}</td>
+               
+                <td>{% if entity.event.datedebut %}{{ entity.event.datedebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entity.event.datefin %}{{ entity.event.datefin|date('Y-m-d') }}{% endif %}</td>
+                <td><ul>
+   <a class="btn btn-default" href="{{ path('evenement_shownotif', { 'id': entity.event.id }) }}">Voir</a>
+
+
+</ul></td>
+            </tr>
+       {%else%}
+            <tr>
+                <td><h4>{{ entity.event.titre }}</h4> <span class="label label-default">New</span></td>
+              
+                <td>{% if entity.event.datedebut %}<h4>{{ entity.event.datedebut|date('Y-m-d') }}</h4>{% endif %}</td>
+                <td>{% if entity.event.datefin %}<h4>{{ entity.event.datefin|date('Y-m-d') }}</h4>{% endif %}</td>
+                <td><ul>
+   <a class="btn btn-default" href="{{ path('evenement_shownotif', { 'id': entity.event.id }) }}">Voir</a>
+
+
+</ul></td>
+            </tr>
+     {%endif%}
+        {% endfor %}
+        </tbody>
+    </table>
+  <div id="Cv" style="display: none;"></div>
+ <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+<script type="text/javascript">
+                                $('a.deletevent').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Supprimer événement',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                $('a.editevent').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Modifier événement',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+
+</script>
+    {% endblock %}

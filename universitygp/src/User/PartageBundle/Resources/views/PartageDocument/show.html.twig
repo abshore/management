@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Document</h1>
+
+      <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+      <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ entity.libelleDoc }}</td>
+            </tr>
+            <tr>
+                            <tr>
+                <th>Liste des mots clés</th>
+                <td>{{ entity.motCle }}</td>
+            </tr>
+            <tr>
+                <th>Résumé</th>
+                <td>{{ entity.resumeDoc|raw }}</td>
+            </tr>
+            <tr>
+                <th>Partagé le</th>
+                <td>{{ entity.datePartage|date('d-m-Y H:i:s') }}</td>
+            </tr>
+			            <tr>
+                <th>Modifié le</th>
+                <td>{%if (entity.dateMAJ==null)%}----------{%else%}{{ entity.dateMAJ|date('d-m-Y H:i:s') }}{%endif%}</td>
+              
+            </tr>
+            
+                        </tr>
+
+            
+            
+            <tr>
+                <th>Valide jusqu'à</th>
+                <td>{{ entity.dateValidite|date('d-m-Y') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+   
+
+   
+        <a class="btn btn-primary" href="{{ path('document_personnel') }}">
+            Revenir à la liste
+        </a>
+    
+        <a class="btn btn-success" href="{{ path('document_personnel_edit', { 'id': entity.idDoc }) }}">
+            Modifier
+        </a>
+    
+        <form action="{{ path('document_personnel_delete', { 'id': entity.idDoc }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button class="btn btn-danger" type="submit">Supprimer</button>
+        </form>
+    
+</ul>
+{% endblock %}

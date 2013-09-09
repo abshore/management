@@ -1,0 +1,101 @@
+
+
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+<div class="panel panel-default">
+<div class="panel-heading">
+        <div style="text-align: left; float: left; text-decoration: underline;font-size: larger">Liste des paniers</div>
+        <div style="text-align: right">
+            <a id="ajouterPanier" class="btn btn-primary" href="#" url="{{ path('panier_new') }}">
+                    Ajouter Panier
+                </a>
+        </div>
+    </div>
+<table class="table table-bordered table-striped table-condensed table-hover">
+
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>Panier{{ entity.num }}</td>
+                <td>    
+                    <ul>            
+                        {% for matiere in entity.matieres %}
+                            <li>       
+                            {{ matiere }}
+                                </li>
+                        {% endfor %} 
+                            </ul>           
+                        </td>
+                        <td style="text-align: right">
+                            <ul>
+                                <a class="btn btn-danger btn-xs" href="{{ path('panier_delete', { 'id': entity.id }) }}" onclick="return confirm('Vous êtes sûr de vouloir quitter ce panier?')"><i class="icon-remove"></i>Supprimer</a>
+
+                                <a href="#" class="modifier btn btn-success btn-xs" url="{{ path('panier_edit', { 'id': entity.id }) }}">Modifier</a>
+                            </ul>
+                        </td>
+                    </tr>
+        {% endfor %}
+                </tbody>
+            </table>
+    </div>
+           
+
+            <div id="Panier" style="display: none"></div>
+
+            <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+            <script type="text/javascript">
+
+                                    $('#ajouterPanier').click(function() {
+                                        var url = $(this).attr('url');
+                                        $("#Panier").load(url, function() {
+                                            $(this).dialog({
+                                                height: 'auto',
+                                                width: 'auto',
+                                                modal: true,
+                                                title: 'Ajouter Panier',
+                                                position: 'center',
+                                                overlay: {
+                                                    backgroundColor: '#000',
+                                                    opacity: 0.5
+                                                },
+                                            });
+                                        });
+                                    });
+
+
+                                    $('a.modifier').click(function() {
+                                        var url = $(this).attr('url');
+                                        $("#Panier").load(url, function() {
+                                            $(this).dialog({
+                                                height: 'auto',
+                                                width: 'auto',
+                                                modal: true,
+                                                title: 'Modif Panier',
+                                                position: 'center',
+                                                overlay: {
+                                                    backgroundColor: '#000',
+                                                    opacity: 0.5
+                                                },
+                                                close: function() {
+                                                    $(this).dialog('close');
+
+                                                },
+                                            });
+                                        });
+                                    });
+
+
+                </script>
+
+
+

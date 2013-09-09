@@ -1,0 +1,30 @@
+formationE:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:Formation:index" }
+
+formationE_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:Formation:show" }
+
+formationE_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:Formation:new" }
+
+formationE_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:Formation:create" }
+    requirements: { _method: post }
+
+formationE_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:Formation:edit" }
+
+formationE_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:Formation:update" }
+    requirements: { _method: post|put }
+
+formationE_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:Formation:delete" }
+    #requirements: { _method: post|delete }

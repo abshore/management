@@ -1,0 +1,7 @@
+parameters:
+#    gestion_absence_note.example.class: Gestion\AbsenceNoteBundle\Example
+
+services:
+#    gestion_absence_note.example:
+#        class: %gestion_absence_note.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

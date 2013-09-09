@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+   
+
+    <form class="form-horizontal" action="{{ path('profilclasse_create') }}" method="post" {{ form_enctype(form) }}>
+<div class="form-group">
+{{ form_row(form.code) }} 
+{{ form_row(form.libelle) }}
+    </div>
+          <div class="form-group">
+           <table class="table table-bordered" >
+        {% for panier in form.paniers %}
+                    {% set cmp = loop.index %}
+       
+                    <tr>
+                        <td class="{{cmp}}">Panier:{{ form_row(panier) }}</td>
+                        <td><ul>
+                                {% for m in paniers[cmp-1].matieres %}                
+                                    <li>{{m}}</li>
+                                {% endfor %}
+
+                            </ul>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+                </table>
+              </div>
+           {{ form_rest(form) }}
+
+        <div class="panel-footer" style="text-align: right">
+            <button class="btn btn-info btn-mini" type="submit">Ajouter</button>
+        </div>
+    
+    </form>
+
+        
+{% endblock %}

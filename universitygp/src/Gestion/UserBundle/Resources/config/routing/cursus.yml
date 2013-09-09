@@ -1,0 +1,59 @@
+cursus:
+    pattern:  /
+    defaults: { _controller: "GestionUserBundle:Cursus:index" }
+cursususer:
+    pattern:  /cursususer
+    defaults: { _controller: "GestionUserBundle:Cursus:indexuser" }
+
+cursus_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionUserBundle:Cursus:show" }
+cursus_showuser:
+    pattern:  /{id}/showuser
+    defaults: { _controller: "GestionUserBundle:Cursus:showuser" }
+
+cursus_new:
+    pattern:  /new/{iduser}/
+    defaults: { _controller: "GestionUserBundle:Cursus:new" }
+cursus_newuser:
+    pattern:  /newuser/{iduser}/
+    defaults: { _controller: "GestionUserBundle:Cursus:newuser" }
+cursus_createuser:
+    pattern:  /createuser/{iduser}/
+    defaults: { _controller: "GestionUserBundle:Cursus:createuser" }
+    requirements: { _method: post }
+
+cursus_create:
+    pattern:  /create/{iduser}/
+    defaults: { _controller: "GestionUserBundle:Cursus:create" }
+    requirements: { _method: post }
+
+cursus_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionUserBundle:Cursus:edit" }
+layout_cursus:
+    pattern:  /{id}/layout
+    defaults: { _controller: "GestionUserBundle:Cursus:layout" }
+
+cursus_edituser:
+    pattern:  /{id}/edituser
+    defaults: { _controller: "GestionUserBundle:Cursus:edituser" }
+
+cursus_updateuser:
+    pattern:  /{id}/updateuser
+    defaults: { _controller: "GestionUserBundle:Cursus:updateuser" }
+    requirements: { _method: post|put }
+
+cursus_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionUserBundle:Cursus:update" }
+    requirements: { _method: post|put }
+
+cursus_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionUserBundle:Cursus:delete" }
+    requirements: { _method: post|delete }
+cursus_deleteuser:
+    pattern:  /{id}/deleteuser
+    defaults: { _controller: "GestionUserBundle:Cursus:deleteuser" }
+    requirements: { _method: post|delete }

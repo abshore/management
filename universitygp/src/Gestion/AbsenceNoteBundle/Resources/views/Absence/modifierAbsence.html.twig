@@ -1,0 +1,131 @@
+{#<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>#}
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+{{bien}}
+<form id="form" action="#" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading ">
+            <table class="table">
+                <tr>
+                    <td><b>Date:</b></td>
+                    <td id="date">{{date}}</td>
+                    <td><b>Classe:</b></td>
+                    <td id="classe" val="{{seance.classe.id}}">{{seance.classe}}</td>
+                    <td><b>Groupe:</b></td>
+                    <td id="groupe">{{seance.groupe}}</td>
+                    <td><b>Matiere:</b></td>
+                    <td id="matiere" val="{{seance.matiere.id}}">{{seance.matiere}}</td>
+                    <td><b>Creneau:</b></td>
+                    <td id="creneau">{{ seance.heureDeb|date('H:i') }}-->{{ seance.heureFin|date('H:i') }}</td>
+
+                </tr>
+            </table>
+            {#<div style="float: left"><b>Date:</b></div> <div id="date" val="{{date}}" style="float: left"> {{date}}</div>&nbsp;&nbsp;&nbsp;
+            <div style="float: left"><b>Classe:</b></div> <div id="classe" val="{{seance.classe.id}}" style="float: left"> {{seance.classe}}</div>&nbsp;&nbsp;&nbsp;
+            <div style="float: left"><b>Groupe:</b></div> <div id="groupe" style="float: left">{{seance.groupe}}</div>&nbsp;&nbsp;&nbsp;
+            <div style="float: left"><b>Matiere:</b></div> <div id="matiere" val="{{seance.matiere.id}}" style="float: left">{{seance.matiere}}</div>&nbsp;&nbsp;&nbsp;
+            <div style="float: left"><b>Creneau:</b></div> <div style="float: left">{{ seance.heureDeb|date('H:i') }}</div>--><div style="float: left">{{ seance.heureFin|date('H:i') }}</div>#}
+        </div>    
+
+        <div class="panel-body" style="margin-left: 20%; margin-right: 20%;">
+            <table class="table">
+                {% if etudiants %}
+        {% for entity in etudiants %}
+                    <tr>
+                        <td id="idEt{{loop.index}}" style="display: none;">{{entity.id}}</td>
+                        <td>{{entity.nom}}</td>
+                        <td>{{entity.prenom}}</td>
+                        <td><input type="checkbox" id="absent{{loop.index}}"></td>
+                    </tr>
+        {% endfor %}
+                    <a style="display: none" id="nb">{{etudiants.count}}</a>
+                    {% else %}
+                    aucun etudiant inscrit dans ce groupe
+                    {% endif %}
+                </table>
+            </div>
+            <div class="panel-footer">
+                <div style="float: left;"><a href="{{path('absence')}}"><i class="glyphicon glyphicon-circle-arrow-left">retour</i></a></div>
+                <div style="text-align: right"><input id="valider" class="btn btn-info" type="button" value="valider"></div>
+
+            </div>
+
+        </div>
+        <div id="modif"></div>
+        <table class="table" style="display: none">
+                {% if etudiantsAb %}
+        {% for entity in etudiantsAb %}
+                <tr>
+                    <td id="idEtAb{{loop.index}}" style="display: none;">{{entity.id}}</td>
+                    <td>{{entity.nom}}</td>
+                    <td>{{entity.prenom}}</td>
+                        {#<td><input type="checkbox" id="absent{{loop.index}}"></td>#}
+                </tr>
+        {% endfor %}
+                <a style="display: none" id="nbAb">{{etudiantsAb | length}}</a>
+                    {% else %}
+                aucun etudiant inscrit dans ce groupe
+                    {% endif %}
+            </table>
+        </form>
+        <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+        <script src="{{ asset('js/jquery-ui.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var nb = $('#nb').text();
+                var nbAb = $('#nbAb').text();
+                //alert(nbAb);
+                for (i = 1; i <= nb; i++) {
+                    var id = $('#idEt' + i).text();
+                    for (j = 1; j <= nbAb; j++) {
+                        var idAb = $('#idEtAb' + j).text();
+
+                        if (idAb == id)
+                        {
+                            $('#absent' + i).attr('checked', nb);
+                        }
+                    }
+                }
+            });
+            $('#valider').click(function() {
+                var nb = $('#nb').text();
+                var n = 0;
+                var etudiantsAbsent = [];
+                var etudiantsPresent = [];
+                for (i = 1; i <= nb; i++) {
+                    if ($('#absent' + i).is(':checked')) {
+                        n = n + 1;
+                        etudiantsAbsent.push(parseInt($('#idEt' + i).text()));
+                    }
+                    else {
+                        etudiantsPresent.push(parseInt($('#idEt' + i).text()));
+                    }
+                }
+                var url = "{{path('abcense_modifierAbsence')}}";
+                var classe = $('#classe').attr('val');
+                var groupe = $('#groupe').text();
+                var matiere = $('#matiere').attr('val');
+                var date = $('#date').text();
+                var creneau = $('#creneau').text();
+                $.post(url, {
+                    classe: classe,
+                    groupe: groupe,
+                    matiere: matiere,
+                    date: date,
+                    creneau: creneau,
+                    etudiantsAbsent: etudiantsAbsent,
+                    etudiantsPresent: etudiantsPresent
+                }, function(data) {
+                    alert(data.i);
+                }, "json"
+
+                        );
+            });
+
+
+            </script>
+{% endblock %}

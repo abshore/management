@@ -1,0 +1,53 @@
+entreprise:
+    pattern:  /
+    defaults: { _controller: "GestionUserBundle:Entreprise:index" }
+
+entreprise_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionUserBundle:Entreprise:show" }
+
+entreprise_new:
+    pattern:  /new
+    defaults: { _controller: "GestionUserBundle:Entreprise:new" }
+
+entreprise_create:
+    pattern:  /create
+    defaults: { _controller: "GestionUserBundle:Entreprise:create" }
+    requirements: { _method: post }
+
+entreprise_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionUserBundle:Entreprise:edit" }
+
+entreprise_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionUserBundle:Entreprise:update" }
+    requirements: { _method: post|put }
+entreprise_editactiver:
+    pattern:  /{id}/editactiver
+    defaults: { _controller: "GestionUserBundle:Entreprise:editactiver" }
+
+entreprise_updateactiver:
+    pattern:  /{id}/updateactiver
+    defaults: { _controller: "GestionUserBundle:Entreprise:updateactiver" }
+entreprise_editdesactiver:
+    pattern:  /{id}/editdesactiver
+    defaults: { _controller: "GestionUserBundle:Entreprise:editdesactiver" }
+
+entreprise_updatedesactiver:
+    pattern:  /{id}/updatedesactiver
+    defaults: { _controller: "GestionUserBundle:Entreprise:updatedesactiver" }
+   
+
+entreprise_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionUserBundle:Entreprise:delete" }
+    requirements: { _method: post|delete }
+    
+entreprise_editperso:
+    pattern:  /editperso
+    defaults: { _controller: "GestionUserBundle:Entreprise:editperso" }
+entreprise_updateperso:
+    pattern:  /updateperso
+    defaults: { _controller: "GestionUserBundle:Entreprise:updateperso" }
+    requirements: { _method: post|put }

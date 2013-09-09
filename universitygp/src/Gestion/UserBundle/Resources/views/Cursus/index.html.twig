@@ -1,0 +1,131 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Cursus list</h1>
+
+    <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Loisirs</th>
+                <th>Presentation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('cursus_show', { 'id': entity.id }) }}">{{ entity.nomcv }}</a></td>
+                <td>{{ entity.user.nom }}</td>
+                <td>{{ entity.user.prenom }}</td>
+                <td>{{ entity.loisirs }}</td>
+                <td>{{ entity.presentation }}</td>
+                <td>
+                <ul>
+                  
+                        <a class="delet btn btn-danger" href="#" url="{{ path('cursus_show', { 'id': entity.id }) }}">Supprimer</a>
+                    
+                        <a class="edit btn btn-success" href="#" url="{{ path('cursus_edit', { 'id': entity.id }) }}">edit</a>
+                   
+                        <a class="btn btn-primary" href="{{ path('layout_cursus', { 'id': entity.id }) }}">Terminer</a>
+                  
+             
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+       <div id="Cv" style="display: none;"></div>
+
+
+    {# Ajoutez ces javascripts si vous comptez vous servir des
+fonctionnalités du bootstrap Twitter #}
+   
+ <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+             
+       
+<script type="text/javascript">
+                                $('a.delet').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Supprimer CV',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                $('a.modifSalle').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Modifier Salle',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+
+
+        </script> 
+<script type="text/javascript">
+                                $('a.edit').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Modifier CV',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                
+
+
+        </script> 
+
+    {% endblock %}

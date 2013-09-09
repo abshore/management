@@ -1,0 +1,115 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+  
+ 
+<div  style=" height: 1000px;min-height: 100%; margin-left: 10%;margin-right: 10%;margin-top: 8%;" align="center" >
+
+<div class="panel panel-info" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+    
+
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                 <th>Titre</th>
+                <th>Description</th>
+                <th>Débuté le</th>
+                <th>Fini le</th> 
+              
+                <th>Actions</th>
+            </tr>
+        </thead>
+           <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.libelleNouvelle }}</a></td>
+                <td>{{ entity.descriptionNouvelle |raw }}</td>
+                <td>{{ entity.dateDebutNouvelle|date('d-m-Y') }} </td>
+                <td>{{ entity.dateFinNouvelle|date('d-m-Y') }}</td>
+              
+                <td>
+                <ul>
+             <a class="btn btn-primary" href="{{ path('infoNouvelle_show', { 'id': entity.id }) }}">Visualiser</a>
+       
+           <a class="btn btn-primary" href="http://localhost{{asset(entity.UrlPieceJointe)}}">Télécharger</a>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        </div>
+        
+        
+
+    </div>
+
+
+ 
+<div class="row">
+
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{ asset('img/superadmin.png') }}"/>
+      <div class="caption">
+        <h3>Gestion des étudiants</h3>
+       
+        <p>
+       <a  href="{{ path('etudiant') }}"  class="btn btn-primary">Action</a>
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{ asset('img/superadmin.png') }}"/>
+      <div class="caption">
+        <h3>Gestion des admin</h3>
+       
+        <p>
+       <a  href="{{ path('admin') }}"  class="btn btn-primary">Action</a>
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{ asset('img/superadmin.png') }}"/>
+      <div class="caption">
+        <h3>Gestion des prof</h3>
+       
+        <p>
+       <a  href="{{ path('prof') }}"  class="btn btn-primary">Action</a>
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+ </div>
+
+
+
+ 
+   
+
+</div>
+
+
+    {% endblock %}
+

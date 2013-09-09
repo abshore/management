@@ -1,0 +1,30 @@
+formation:
+    pattern:   /{idcursus}/
+    defaults: { _controller: "GestionUserBundle:Formation:index" }
+
+formation_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionUserBundle:Formation:show" }
+
+formation_new:
+    pattern:  /new/{idcursus}/
+    defaults: { _controller: "GestionUserBundle:Formation:new" }
+
+formation_create:
+    pattern:  /create/{idcursus}/
+    defaults: { _controller: "GestionUserBundle:Formation:create" }
+    requirements: { _method: post }
+
+formation_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionUserBundle:Formation:edit" }
+
+formation_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionUserBundle:Formation:update" }
+    requirements: { _method: post|put }
+
+formation_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionUserBundle:Formation:delete" }
+    requirements: { _method: post|delete }

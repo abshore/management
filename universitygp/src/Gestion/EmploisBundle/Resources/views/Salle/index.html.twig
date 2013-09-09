@@ -1,0 +1,93 @@
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        <div style="text-align: left; float: left; text-decoration: underline;font-size: larger">Liste des Salles</div>
+        <div style="text-align: right">
+            <a id="ajoutSalle" class="btn btn-primary" url="{{ path('salle_new') }}" href="#">
+                Ajouter Salle
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Num</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for entity in entities %}
+                    <tr>
+                        <td><a>{{ entity.id }}</a></td>
+                        <td>{{ entity.num }}</td>
+                        <td>{{ entity.type }}</td>
+                        <td style="text-align: right">
+                            <a class="btn btn-danger btn-xs" href="{{ path('salle_delete', { 'id': entity.id }) }}" onclick="return confirm('Vous êtes sûr de vouloir supprimer cette rubrique?');">Supprimer</a>
+                            <a class="modifSalle btn btn-success btn-xs" href="#" url="{{ path('salle_edit', { 'id': entity.id }) }}">Modifier</a>
+                        </td>
+                    </tr>
+        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<div id="Salle" style="display: none;"></div>
+    <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script type="text/javascript">
+                                $('#ajoutSalle').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Salle").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Ajouter Salle',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                $('a.modifSalle').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Salle").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Modifier Salle',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+
+
+        </script>

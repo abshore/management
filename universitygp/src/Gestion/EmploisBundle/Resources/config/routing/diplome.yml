@@ -1,0 +1,30 @@
+diplome:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:Diplome:index" }
+
+diplome_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:Diplome:show" }
+
+diplome_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:Diplome:new" }
+
+diplome_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:Diplome:create" }
+    requirements: { _method: post }
+
+diplome_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:Diplome:edit" }
+
+diplome_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:Diplome:update" }
+    requirements: { _method: post|put }
+
+diplome_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:Diplome:delete" }
+    #requirements: { _method: post|delete }

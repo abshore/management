@@ -1,0 +1,30 @@
+emploie:
+    pattern:  /
+    defaults: { _controller: "GestionOffreBundle:Emploie:index" }
+
+emploie_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionOffreBundle:Emploie:show" }
+
+emploie_new:
+    pattern:  /new
+    defaults: { _controller: "GestionOffreBundle:Emploie:new" }
+
+emploie_create:
+    pattern:  /create
+    defaults: { _controller: "GestionOffreBundle:Emploie:create" }
+    requirements: { _method: post }
+
+emploie_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionOffreBundle:Emploie:edit" }
+
+emploie_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionOffreBundle:Emploie:update" }
+    requirements: { _method: post|put }
+
+emploie_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionOffreBundle:Emploie:delete" }
+    requirements: { _method: post|delete }

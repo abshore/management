@@ -1,0 +1,30 @@
+stage:
+    pattern:  /
+    defaults: { _controller: "GestionOffreBundle:Stage:index" }
+
+stage_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionOffreBundle:Stage:show" }
+
+stage_new:
+    pattern:  /new
+    defaults: { _controller: "GestionOffreBundle:Stage:new" }
+
+stage_create:
+    pattern:  /create
+    defaults: { _controller: "GestionOffreBundle:Stage:create" }
+    requirements: { _method: post }
+
+stage_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionOffreBundle:Stage:edit" }
+
+stage_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionOffreBundle:Stage:update" }
+    requirements: { _method: post|put }
+
+stage_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionOffreBundle:Stage:delete" }
+    requirements: { _method: post|delete }

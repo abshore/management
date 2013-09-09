@@ -1,0 +1,120 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+         <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Date debut</th>
+                <th>Date fin</th>
+                <th>Secteur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.titre }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{% if entity.dateDebut %}{{ entity.dateDebut|date('Y-m-d ') }}{% endif %}</td>
+                <td>{% if entity.dateFin %}{{ entity.dateFin|date('Y-m-d ') }}{% endif %}</td>
+                <td>{{ entity.secteur }}</td>
+                <td>
+                <ul>
+                   
+                        <a class="delet btn btn-danger" href="#" url="{{ path('emploie_show', { 'id': entity.id }) }}">Supprimer</a>
+                    
+                        <a class="edit btn btn-success" href="#" url="{{ path('emploie_edit', { 'id': entity.id }) }}">Modifier</a>
+                 
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+      
+            <a class="add btn btn-primary" href="#" url="{{ path('emploie_new') }}">
+               +Nouveau
+            </a>
+       
+    </ul>
+<div id="Cv" style="display: none;"></div>
+ <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+<script type="text/javascript">
+                                $('a.delet').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: '300',
+                                            width: '300',
+                                            modal: true,
+                                            title: 'Supprimer emploie',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+ $('a.add').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: '300',
+                                            width: '300',
+                                            modal: true,
+                                            title: 'Ajouter emploie',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+$('a.edit').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: '300',
+                                            width: '300',
+                                            modal: true,
+                                            title: 'Modifier emploie',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+</script>
+                 
+    {% endblock %}
+
+   

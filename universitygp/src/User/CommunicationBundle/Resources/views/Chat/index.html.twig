@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+{% block meta %}<meta http-equiv="refresh" content="5" url="mapage.php" />{% endblock %}
+{% block body %}
+
+</br></br>
+{% if pagination==null%}
+<p class="text-info">aucun contact en ligne</p>
+{% else %}	
+<ul style="float :right;" class="nav nav-list">
+<li><div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div></li>
+  <li class="nav-header">Contacts en ligne:</li>
+{% for item in pagination %}
+<li{% if loop.index is odd %} style="background-color: #dfdfdf;font: 14px/24px sans-serif;"{% endif %}>
+  <td><a href="#">{{item.username}}</a></td></li>
+{% endfor %}
+</ul>
+	
+	{%endif%}
+	<form action="#">
+<textarea rows="13" style="margin: 0px 0px 10px; width: 1104px; height: 500px;"></textarea>
+<p style="float : right;">
+<textarea rows="2" ></textarea>
+<input type="submit" class="btn btn-large btn-primary" style="width : 155px; height : 53px" value="message"/>	
+</p>
+</form>
+{% endblock %}

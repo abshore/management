@@ -1,0 +1,30 @@
+salle:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:Salle:index" }
+
+salle_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:Salle:show" }
+
+salle_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:Salle:new" }
+
+salle_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:Salle:create" }
+    requirements: { _method: post }
+
+salle_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:Salle:edit" }
+
+salle_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:Salle:update" }
+    requirements: { _method: post|put }
+
+salle_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:Salle:delete" }
+    #requirements: { _method: post|delete }

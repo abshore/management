@@ -1,0 +1,54 @@
+
+<form id="formAjoutPanier" action="{{ path('panier_ajout') }}">
+    <table>
+        <tr>
+            <td>Numéro de panier:</td>
+            <td><input id="numPanier" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Matieres:</td>
+            <td>    <select id="matiere" url="{{ path('get_matierepanier') }}" multiple="multiple">
+                </select>
+            </td>
+        </tr>
+    </table>
+
+        <div style="text-align: right">
+        <input id="ajouter" class="btn btn-info btn-xs" type="button" value="ajouter"/>    
+        </div>
+</form>
+
+<script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+<script src="{{ asset('js/jquery-ui.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    var url = $('#matiere').attr("url");
+    $.get(url,
+    function(data){
+            $('#matiere').append(data.listMatieres);
+		
+},"json");
+    
+});
+$('#ajouter').click(function(){
+    var matiere=$('#matiere').val();
+    var numPanier=$('#numPanier').val();
+    var url=$('#formAjoutPanier').attr('action');
+    $.post(url,{
+        matiere:matiere,
+        numPanier:numPanier
+        },function(data){
+            if(data.resp="ok"){
+                alert('ajout panier avec succée');
+                window.location.reload(true);
+                }
+            }
+);
+    
+    
+
+});
+    
+        
+
+    </script>

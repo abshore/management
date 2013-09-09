@@ -1,0 +1,142 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" />
+<div style="width: 80%; margin-left: 10%;margin-top: 50px;" class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Moteur de recherche</h3>
+  </div>
+  <div class="panel-body">
+    <form  class="form-inline" role="form" action="{{ path('etudiant_username') }}" method="post">
+        <div class="form-group">
+          <input type="text" class="form-control" name="username" placeholder="Search">
+          
+ </div>
+            <div class="col-lg-3"> 
+            <select name="recherche" class="form-control">
+                <option value="username">Username</option>
+                <option value="nom">Nom</option>
+                <option value="prenom">Prenom</option>
+                <option value="email">Email</option>
+                
+</select>
+</div>
+            <button class="btn btn-default" type="submit">Chercher</button>
+        </form>
+  </div>
+</div>
+
+
+    <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+         <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Enabled</th>
+                <th>Locked</th>
+                <th>Expired</th>
+                <th>Expiresat</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Photo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('etudiant_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+               <td>{{ entity.email }}</td>
+                <td>{{ entity.enabled }}</td>
+                <td>{{ entity.locked }}</td>
+                <td>{{ entity.expired }}</td>
+                <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+               <td>{{ entity.nom }}</td>
+                <td>{{ entity.prenom }}</td>
+                 <td>  <img src="{{ asset('upload/' ~ entity.id ~'/' ~ entity.image)}}" alt="pas de photo" height="50" width="50" />
+ </td>
+            <td>
+                <ul>
+                 
+                        <a class="btn btn-primary"  href="{{ path('etudiant_show', { 'id': entity.id }) }}">show</a>
+                    
+                        <a class="btn btn-success"  href="{{ path('etudiant_edit', { 'id': entity.id }) }}">edit</a>
+                  
+                        <a id="addcv" class="addcv btn btn-success" url="{{ path('cursus_new', { 'iduser': entity.id }) }}" href="#">Créer CV</a>
+                  
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+    
+            <a class="btn btn-primary" href="{{ path('etudiant_registration') }}">
+                Add etudiant
+            </a>
+       
+    </ul>
+<div id="Cv" style="display: none;"></div>
+
+
+    {# Ajoutez ces javascripts si vous comptez vous servir des
+fonctionnalités du bootstrap Twitter #}
+   
+ <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+             
+       
+<script type="text/javascript">
+                                $('a.addcv').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Ajouter Experience',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                $('a.modifSalle').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Modifier Salle',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+
+
+        </script>
+
+    {% endblock %}

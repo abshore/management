@@ -1,0 +1,9 @@
+gestion_calendrier_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GestionCalendrierBundle:Default:index }
+
+GestionCalendrierBundle_evenement:
+    resource: "@GestionCalendrierBundle/Resources/config/routing/evenement.yml"
+    prefix:   /evenement
+
+

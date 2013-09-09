@@ -1,0 +1,81 @@
+gestion_absence_note:
+    resource: "@GestionAbsenceNoteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+user_news:
+    resource: "@UserNewsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+gestion_document:
+    resource: "@UserPartageBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+
+
+gestion_offre:
+    resource: "@GestionOffreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+gestion_calendrier:
+    resource: "@GestionCalendrierBundle/Resources/config/routing.yml"
+    prefix:   /
+
+gestion_emplois:
+    resource: "@GestionEmploisBundle/Resources/config/routing.yml"
+    prefix:   /
+gestion_user:
+    resource: "@GestionUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+user_mailing:
+    resource: "@UserCommunicationBundle/Resources/config/routing.yml"
+    prefix: /communication
+question_reponse:
+    resource: "@QuestionReponseQuestionReponseBundle/Resources/config/routing.yml"
+    prefix: /question_reponse
+_besimple_soap:
+    resource: "@BeSimpleSoapBundle/Resources/config/routing/webservicecontroller.xml"
+    prefix:   /ws
+demo_api_10_webservice_call:
+  pattern:      /ws/DemoApi/1.0
+  defaults:     { _controller: BeSimpleSoapBundle:SoapWebService:Call, _format: xml, webservice: DemoApi}
+  requirements: { _method: POST }
+
+demo_api_10_webservice_definition:
+  pattern:      /ws/DemoApi/1.0
+  defaults:     { _controller: BeSimpleSoapBundle:SoapWebService:Definition, _format: xml, webservice: DemoApi}
+  requirements: { _method: GET }
+
+mv_blog:
+    resource: "@MvBlogBundle/Resources/config/routing.yml"
+    prefix: /blog
+mv_blog_admin:
+    resource: "@MvBlogBundle/Resources/config/routing_admin.yml"
+    prefix: /badp
+mv_forum:
+    resource: "@MvBlogBundle/Resources/config/routing_forum/routing.yml"
+    prefix: /forum
+mv_forum_admin:
+    resource: "@MvBlogBundle/Resources/config/routing_forum/routing_admin.yml"
+    prefix: /forum/badp

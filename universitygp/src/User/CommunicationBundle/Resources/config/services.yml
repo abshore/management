@@ -1,0 +1,7 @@
+parameters:
+#    user_communication.example.class: User\CommunicationBundle\Example
+
+services:
+#    user_communication.example:
+#        class: %user_communication.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

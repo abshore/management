@@ -1,0 +1,19 @@
+
+    <form class="form-horizontal" action="{{ path('stage_create') }}" method="post" {{ form_enctype(form) }}>
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="inputEmail">{{ form_label(form.titre) }}</label>
+            <div class="col-lg-5"> {{ form_widget(form.titre, { 'attr': {'class': 'form-control'} }) }} </div>
+        </div>   
+<div class="form-group">
+            <label class="col-lg-2 control-label" for="inputEmail">{{ form_label(form.description) }}</label>
+            <div class="col-lg-5"> {{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }} </div>
+        </div>     
+
+
+   {{ form_rest(form) }}
+        <p>
+            <button type="submit">Ajouter</button>
+        </p>
+    </form>
+
+      

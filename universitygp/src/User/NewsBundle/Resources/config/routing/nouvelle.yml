@@ -1,0 +1,21 @@
+nouvelle:
+    pattern:  /
+    defaults: { _controller: UserNewsBundle:Nouvelle:affichListeNouvelle }
+document_personnel_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: UserPartageBundle:Default:index }
+nouvelle_add:
+    pattern:     /add
+    defaults: { _controller: UserNewsBundle:Nouvelle:add }
+nouvelle_delete:
+    pattern:     /delete/{id}
+    defaults: { _controller: UserNewsBundle:Nouvelle:delete }
+nouvelle_show:
+    pattern:     /show/{id}
+    defaults: { _controller: UserNewsBundle:Nouvelle:show }
+nouvelle_edit:
+    pattern:     /edit/{id}
+    defaults: { _controller: UserNewsBundle:Nouvelle:edit}
+nouvelle_valider:
+    pattern:     /valider/{id}
+    defaults: { _controller: UserNewsBundle:Nouvelle:valider}

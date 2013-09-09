@@ -1,0 +1,70 @@
+<?php
+
+namespace Gestion\CalendrierBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * EvenementUser
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Gestion\CalendrierBundle\Entity\EvenementUserRepository")
+ */
+class EvenementUser
+{
+    
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Gestion\UserBundle\Entity\User",inversedBy="notif_user")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Gestion\CalendrierBundle\Entity\Evenement",inversedBy="notif_event")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     */
+    private $event;
+    
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etat", type="integer")
+     */
+    private $etat;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param integer $etat
+     * @return EvenementUser
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return integer 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+}

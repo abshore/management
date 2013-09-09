@@ -1,0 +1,87 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+   
+    <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+        <thead>
+            <tr>
+               <th>Titre</th>
+                <th>Description</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.titre }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{% if entity.datedebut %}{{ entity.datedebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entity.datefin %}{{ entity.datefin|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                <ul>
+                 
+                        <a class="deletevent btn btn-danger" href="#" url="{{ path('evenement_show', { 'id': entity.id }) }}">Supprimer</a>
+                   
+                        <a class= "editevent btn btn-success" href="#" url="{{ path('evenement_edit', { 'id': entity.id }) }}">edit</a>
+                  
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  <div id="Cv" style="display: none;"></div>
+ <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+<script type="text/javascript">
+                                $('a.deletevent').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Supprimer événement',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                                $('a.editevent').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Modifier événement',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+
+</script>
+    {% endblock %}

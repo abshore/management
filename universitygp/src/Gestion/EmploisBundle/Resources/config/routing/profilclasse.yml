@@ -1,0 +1,30 @@
+profilclasse:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:ProfilClasse:index" }
+
+profilclasse_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:ProfilClasse:show" }
+
+profilclasse_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:ProfilClasse:new" }
+
+profilclasse_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:ProfilClasse:create" }
+    requirements: { _method: post }
+
+profilclasse_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:ProfilClasse:edit" }
+
+profilclasse_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:ProfilClasse:update" }
+    requirements: { _method: post|put }
+
+profilclasse_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:ProfilClasse:delete" }
+    #requirements: { _method: post|delete }

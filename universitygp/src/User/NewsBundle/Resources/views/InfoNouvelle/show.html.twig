@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Document</h1>
+
+      <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+      <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ entity.libelleNouvelle }}</td>
+            </tr>
+            <tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.descriptionNouvelle|raw }}</td>
+            </tr>
+            <tr>
+                <th>Débuté le</th>
+                <td>{{ entity.dateDebutNouvelle|date('d-m-Y') }}</td>
+            </tr>
+			            <tr>
+                <th>Fini le</th>
+                <td>{{ entity.dateFinNouvelle|date('d-m-Y') }}</td>
+            </tr>
+            
+                        </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+   
+
+   
+        <a class="btn btn-primary" href="{{ path('infoNouvelle') }}">
+            Revenir à la liste
+        </a>
+    
+  <a class="btn btn-primary" href="http://localhost{{asset(entity.UrlPieceJointe)}}">Télécharger</a>
+         
+    
+</ul>
+{% endblock %}

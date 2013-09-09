@@ -1,0 +1,50 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Etudiant</h1>
+
+    <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+          <tbody>
+     
+            <tr>
+                <th>Titre</th>
+                
+                <td>{{ entity.titre }}</td>
+            </tr>
+            
+            <tr>
+                <th>Description</th>
+                
+                <td>{{ entity.description }}</td>
+            </tr>
+            
+            <tr>
+                <th>Nom</th>
+                
+                <td>{{ entity.user.nom }}</td>
+            </tr>
+            
+           
+            <tr>
+                <th>Date de debut</th>
+               <td>{% if entity.datedebut %}{{ entity.datedebut|date('Y-m-d') }}{% endif %}</td>
+               
+            </tr>
+            <tr>
+                <th>Date de fin</th>
+               <td>{% if entity.datefin %}{{ entity.datefin|date('Y-m-d') }}{% endif %}</td>
+               
+            </tr>
+           
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    
+        <a class="btn btn-primary" href="{{ path('evenementnotif') }}">
+            Back to the list
+        </a>
+    
+    
+</ul>
+{% endblock %}

@@ -1,0 +1,315 @@
+<?php
+
+namespace Gestion\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+use Doctrine\Common\Collections\ArrayCollection;
+
+
+/**
+ * Cursus
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Gestion\UserBundle\Entity\CursusRepository")
+ */
+class Cursus
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="nomcv", type="string", length=255)
+     */
+    private $nomcv;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="loisirs", type="string", length=255)
+     */
+    private $loisirs;
+    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="User",inversedBy="cursus")
+     * @ORM\JoinColumn(name="cursus_user_id", referencedColumnName="id")
+     */
+    private $user;
+    
+      /**
+     * @ORM\OneToMany(targetEntity="Formation", mappedBy="cursus",cascade={"all"})
+     * 
+     */
+      private $formations;
+      
+     /**
+     * @ORM\OneToMany(targetEntity="Experience", mappedBy="cursus",cascade={"all"})
+     * 
+     */
+      private $experiences;
+        /**
+     * @ORM\OneToMany(targetEntity="Langue", mappedBy="cursus",cascade={"all"})
+     * 
+     */
+      private $langues;
+      /**
+     * @var array
+     *
+     * @ORM\Column(name="titre", type="array",nullable=true)
+     */
+    private $titre;
+    
+   
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="presentation", type="text",nullable=true)
+     */
+       private $presentation;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set loisirs
+     *
+     * @param string $loisirs
+     * @return Cursus
+     */
+    public function setLoisirs($loisirs)
+    {
+        $this->loisirs = $loisirs;
+    
+        return $this;
+    }
+
+    /**
+     * Get loisirs
+     *
+     * @return string 
+     */
+    public function getLoisirs()
+    {
+        return $this->loisirs;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->etudiant = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->experiences = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->langues = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Set titre
+     *
+     * @param array $titre
+     * @return Cursus
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+    
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return array 
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set presentation
+     *
+     * @param string $presentation
+     * @return Cursus
+     */
+    public function setPresentation($presentation)
+    {
+        $this->presentation = $presentation;
+    
+        return $this;
+    }
+
+    /**
+     * Get presentation
+     *
+     * @return string 
+     */
+    public function getPresentation()
+    {
+        return $this->presentation;
+    }
+
+   
+
+    /**
+     * Add formations
+     *
+     * @param \Gestion\UserBundle\Entity\Formation $formations
+     * @return Cursus
+     */
+    public function addFormation(\Gestion\UserBundle\Entity\Formation $formations)
+    {
+        $this->formations[] = $formations;
+    
+        return $this;
+    }
+
+    /**
+     * Remove formations
+     *
+     * @param \Gestion\UserBundle\Entity\Formation $formations
+     */
+    public function removeFormation(\Gestion\UserBundle\Entity\Formation $formations)
+    {
+        $this->formations->removeElement($formations);
+    }
+
+    /**
+     * Get formations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFormations()
+    {
+        return $this->formations;
+    }
+
+    /**
+     * Add experiences
+     *
+     * @param \Gestion\UserBundle\Entity\Experience $experiences
+     * @return Cursus
+     */
+    public function addExperience(\Gestion\UserBundle\Entity\Experience $experiences)
+    {
+        $this->experiences[] = $experiences;
+    
+        return $this;
+    }
+
+    /**
+     * Remove experiences
+     *
+     * @param \Gestion\UserBundle\Entity\Experience $experiences
+     */
+    public function removeExperience(\Gestion\UserBundle\Entity\Experience $experiences)
+    {
+        $this->experiences->removeElement($experiences);
+    }
+
+    /**
+     * Get experiences
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+
+    /**
+     * Add langues
+     *
+     * @param \Gestion\UserBundle\Entity\Langue $langues
+     * @return Cursus
+     */
+    public function addLangue(\Gestion\UserBundle\Entity\Langue $langues)
+    {
+        $this->langues[] = $langues;
+    
+        return $this;
+    }
+
+    /**
+     * Remove langues
+     *
+     * @param \Gestion\UserBundle\Entity\Langue $langues
+     */
+    public function removeLangue(\Gestion\UserBundle\Entity\Langue $langues)
+    {
+        $this->langues->removeElement($langues);
+    }
+
+    /**
+     * Get langues
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLangues()
+    {
+        return $this->langues;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Gestion\UserBundle\Entity\User $user
+     * @return Cursus
+     */
+    public function setUser(\Gestion\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Gestion\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set nomcv
+     *
+     * @param string $nomcv
+     * @return Cursus
+     */
+    public function setNomcv($nomcv)
+    {
+        $this->nomcv = $nomcv;
+    
+        return $this;
+    }
+
+    /**
+     * Get nomcv
+     *
+     * @return string 
+     */
+    public function getNomcv()
+    {
+        return $this->nomcv;
+    }
+}

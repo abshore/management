@@ -1,0 +1,46 @@
+user_communication_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: UserCommunicationBundle:Default:index }
+
+accueil:
+    pattern:  /accueil
+    defaults: { _controller: UserCommunicationBundle:Message:accueil }	
+nouveau_message:
+    pattern:  /nouveau
+    defaults: { _controller: UserCommunicationBundle:Message:index }
+voir_msg:
+    pattern:  /message
+    defaults: { _controller: UserCommunicationBundle:Message:voir }
+detail_msg:
+    pattern:  /detail/{id}
+    defaults: { _controller: UserCommunicationBundle:Message:detail,id:1 }
+download:
+    pattern:  /download/{id}
+    defaults: { _controller: UserCommunicationBundle:Message:detail,id:1 }
+delete_msg:
+    pattern: /delete/{id}
+    defaults: { _controller: UserCommunicationBundle:Message:delete,id:1 }
+msg_envoi:
+    pattern:  /envoi
+    defaults: { _controller: UserCommunicationBundle:Message:msgenvoi }
+chat_home:
+    pattern:  /chat/
+    defaults: { _controller: UserCommunicationBundle:Chat:index }
+chat_add:
+    pattern:  /add
+    defaults: { _controller: UserCommunicationBundle:Chat:add }
+chat_amail:
+    pattern:  /mail
+    defaults: { _controller: UserCommunicationBundle:Chat:envoimail }
+detail_mail:
+    pattern:  /mail/detail/{id}/{num}
+    defaults: { _controller: UserCommunicationBundle:Chat:detailmail }
+reponse_msg:
+    pattern:  /message/{id}
+    defaults: { _controller: UserCommunicationBundle:Message:reponse }
+reponsetransf_msg:
+    pattern:  /message/transfer/{id}
+    defaults: { _controller: UserCommunicationBundle:Message:reponseTrans }
+detail_envoi:
+   pattern:  /messageenvoi/{id}
+   defaults: { _controller: UserCommunicationBundle:Message:detailenvoi }

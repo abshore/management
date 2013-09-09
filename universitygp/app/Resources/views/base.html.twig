@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     {% block meta %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> {% endblock %}
+    <title> {% block title %}ABSHORE{% endblock %}</title>
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
+    
+ <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ asset('css/jquery.ptTimeSelect.css') }}" type="text/css" />
+
+<link rel="stylesheet" href="http://jquery.bassistance.de/validate/demo/site-demos.css">
+    {% endblock %}
+  </head>
+  <body>
+       <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+ 
+ <div class="navbar-header">
+    
+    <a class="navbar-brand" href="{{ path('tableau_board') }}">Dashboard</a>
+  </div>
+
+
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+ {% if is_granted('ROLE_PROF') %}
+ <li><img src="{{ asset('upload/' ~ app.user.id ~'/' ~ app.user.image)}}" alt="pas de photo" height="50" width="50" /></li>
+{%endif%}
+ {% if is_granted('ROLE_ETUDIANT') %}
+ <li><img src="{{ asset('upload/' ~ app.user.id ~'/' ~ app.user.image)}}" alt="pas de photo" height="50" width="50" /></li>
+{%endif%}
+<li><a href="{{path('accueil')}}" >
+                    Messagerie <b class="glyphicon glyphicon-comment"></b>
+                </a></li>
+                {% if (is_granted('ROLE_ETUDIANT')) or ( is_granted('ROLE_PROF'))  %}
+                {% if is_granted('ROLE_ETUDIANT') %}
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                    Questions/Réponses<b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                        <li><a href="{{path('ajout_question')}}" >
+                         Ajouter Question <span class="glyphicon glyphicon-question-sign"></span>
+                     </a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="{{path('moteur_di_recherche')}}">recherche <b class="glyphicon glyphicon-search"></b></a></li>
+                        
+                     
+                </ul>
+                </li>
+                
+                     {%endif%}
+<li>{% if is_granted('ROLE_PROF') %}<a href="{{path('question_reponse_question_reponse_homepage')}}" >{%else%}<a href="{{path('reponse_homepage')}}" >{%endif%}
+                    notifications {% if is_granted('ROLE_PROF') %}{% if nbrenotif.count!=0%}<span class="badge">{{nbrenotif.count}} </span>{%else%}<b class="glyphicon glyphicon-bell"></b>{%endif%}{%else%}{% if nbrereponse.count!=0%}<span class="badge">{{nbrereponse.count}} </span>{%else%}<b class="glyphicon glyphicon-bell"></b>{%endif%}{%endif%}
+                </a></li>
+                {%endif%}
+  {% if is_granted('ROLE_ADMIN') %}
+   <li><a href="{{ path('cursus') }}">Gestion CV</a></li>
+   
+   <li><a href="{{ path('nouvelle') }}">Gestion Nouvelle</a></li>
+   <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                    Gérer Users<b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                         <li><a tabindex="-1" href="{{ path('etudiant') }}">Etudiants</a></li>
+                        <li class="divider"></li>
+                                
+                        <li><a tabindex="-1" href="{{ path('prof') }}">Profs</a></li>
+                        <li class="divider"></li>
+
+                           <li><a tabindex="-1" href="{{ path('admin') }}">Admins</a></li>
+                     
+                </ul>
+                </li>
+ 
+
+
+ {%endif%}
+
+<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                    Gérer Documents<b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                         <li><a tabindex="-1" href="{{ path('document_personnel') }}">Documents personnels</a></li>
+                        <li class="divider"></li> 
+                                 
+                        <li><a tabindex="-1" href="{{ path('document') }}">Recherche documents</a></li>
+                        
+
+                     
+                     
+                </ul>  
+                </li>
+
+                 
+
+
+{% if is_granted('ROLE_ENTREPRISE') %}
+
+ <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                    Offres<b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                         <li><a tabindex="-1" href="{{ path('stage') }}">Stage</a></li>
+                        <li class="divider"></li>
+                                
+                        <li><a tabindex="-1" href="{{ path('emploie') }}">Emploi</a></li>
+                       
+
+                     
+                </ul>
+                </li>
+{%endif%}
+
+ 
+<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                                Calendrier<b class="caret"></b>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                               
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <li><a tabindex="-1" href="{{ path('gestion_emplois_homepage') }}">Plan d'etude</a></li>
+                                <li class="divider"></li>
+                                  {% if is_granted('ROLE_AGENTVALIDATION') %}  
+                                <li><a tabindex="-1"  href="{{ path('entreprise') }}">
+                                 <span class="badge pull-right">{{notif.NbrEntreprise}}</span>
+                                Entreprise </a>
+                             </li>
+                  {%endif%}
+                                <li><a tabindex="-1" href="#">Emploi du temps</a></li>
+                                 {%endif%}
+                                  {% if is_granted('ROLE_PROF') %}
+                              <li><a tabindex="-1"  href="{{ path('evenementnotif') }}">
+                                 <span class="badge pull-right">{{notif.NbrNotif}}</span>
+                                Evenement </a>
+                             </li>
+                           <li class="divider"></li>
+                                <li><a tabindex="-1" id="addevent" class="addevent" href="#" url="{{ path('evenement_new') }}">Créer événement</a></li>
+                                <li class="divider"></li>
+ <li><a tabindex="-1"    href="{{ path('evenement') }}">Mes événement</a></li>
+                               
+                                  {%endif%}
+
+                            </ul>
+                        </li>
+
+ 
+                   {# {% if is_granted('ROLE_ADMIN') %}#}
+   <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                    Gérer Blog<b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                         <li><a tabindex="-1" href="{{ path('blog_homepage') }}">accueil</a></li>
+                        <li class="divider"></li>
+                                
+                        <li><a tabindex="-1" href="{{ path('badp_home') }}">parametres</a></li>
+                        
+                     
+                </ul>
+                </li>{#{%else%}
+   <li><a href="{{ path('blog_homepage') }}">Blog</a></li>
+   {%endif%}#}
+                {% if is_granted('ROLE_ADMIN') %}
+                  <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                    Gérer Forum<b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                         <li><a tabindex="-1" href="{{ path('forum_homepage') }}">accueil</a></li>
+                        <li class="divider"></li>
+                                
+                        <li><a tabindex="-1" href="{{ path('badp_forumhome') }}">parametres</a></li>
+                        
+                     
+                </ul>
+                </li>
+                {%else%}
+                <li><a href="{{path('forum_homepage')}}" >
+                    Forum <b class="glyphicon glyphicon-flag"></b>
+                </a></li>
+                {%endif%}
+                
+               
+  
+              
+
+
+  
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+           
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                    Bienvenue {{ app.user.username }}<b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                     {#   <li><a tabindex="-1" href="#">Connecté en tant que {{ app.user.username }} </a></li>#}
+
+                        
+                        
+                       
+                          <li><a tabindex="-1" href="{{ path('tableau_board') }}">Tableau de Board</a></li>
+                        <li class="divider"></li>
+         {% if is_granted('ROLE_ENTREPRISE') %}  
+                        <li><a tabindex="-1" href="{{ path('entreprise_editperso') }}">Modifier mon profil</a></li>
+                        <li class="divider"></li>
+                       
+                         {%endif%}
+                                 {% if is_granted('ROLE_ETUDIANT') %}  
+                        <li><a tabindex="-1" href="{{ path('etudiant_editperso') }}">Modifier mon profil</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="{{ path('cursususer') }}">Mes CV</a></li>
+                        <li class="divider"></li>
+                         {%endif%}
+                   {% if is_granted('ROLE_ETUDIANT') %} 
+                   <li><a tabindex="-1"  id="addcv" class="addcv" url="{{ path('cursus_newuser', { 'iduser': app.user.id }) }}" href="#">Créer CV</a></li>
+                      <li class="divider"></li>                   
+                      {%endif%}
+                   {% if is_granted('ROLE_PROF') %} 
+                   <li><a tabindex="-1"  id="addcv" class="addcv" url="{{ path('cursus_newuser', { 'iduser': app.user.id }) }}" href="#">Créer CV</a></li>
+                      <li class="divider"></li>  
+                       <li><a tabindex="-1" href="{{ path('cursususer') }}">Mes CV</a></li>
+                        <li class="divider"></li>                 
+                      {%endif%}
+                                  {% if is_granted('ROLE_PROF') %}  
+                        <li><a tabindex="-1" href="{{ path('prof_editperso') }}">Modifier mon profil</a></li>
+                        <li class="divider"></li>
+                         {%endif%}
+                                  {% if is_granted('ROLE_ADMIN') %}  
+                        <li><a tabindex="-1" href="{{ path('admin_editperso') }}">Modifier mon profil</a></li>
+                        <li class="divider"></li>
+                         {%endif%}
+        
+ 
+
+ <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                    </ul>
+                </li>
+ {% if is_granted('ROLE_PROF') %}
+                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">Taches Prof <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                        <li><a href="{{ path('absence') }}">Gestion des absences</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Gestion des notes</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+
+             {#       <a href="#"> Connecté en tant que {{ app.user.username }} </a> </li>
+              
+                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>#}
+                            {% else %}
+                <li>       
+                        {#% include "FOSUserBundle:Security:login.html.twig" %#}
+                     {#  <a href="{{ path('fos_user_security_login') }}">Connexion</a>#}
+                         {{ render(controller('FOSUserBundle:Security:Login'))}}
+                            {% endif %}
+                    </li> 
+
+
+               
+
+
+                      </ul>
+
+
+</div>
+</nav>
+
+               
+               
+         
+      
+      </div>
+      <div id="Cv" style="display: none;"></div>
+          {% block body %}
+        
+      
+          {% endblock %}
+      
+  {% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/ckeditor.js') }}"></script> 
+ <script type="text/javascript" src="{{ asset('js/autosuggest.js') }}"></script>
+ <script type="text/javascript" src="{{ asset('js/twitter-bootstrap-typeahead.js') }}"></script>
+        
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
+
+    {# Ajoutez ces javascripts si vous comptez vous servir des
+fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+ <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+             
+       
+            <script type="text/javascript">
+                   $(function() {
+   $( ".form-control.date" ).datetimepicker();
+   });
+
+            </script>
+
+
+
+    {# Ajoutez ces javascripts si vous comptez vous servir des
+fonctionnalités du bootstrap Twitter #}
+   
+
+             
+            </script>
+            
+            <script type="text/javascript" src="{{ asset('js/ckeditor.js') }}"></script> <script type="text/javascript">
+
+  </script>
+<script type="text/javascript">
+                                $('a.addevent').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Ajouter un événement',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+</script>
+       
+<script type="text/javascript">
+                                $('a.addcv').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: 'auto',
+                                            width: 'auto',
+                                            modal: true,
+                                            title: 'Ajouter Experience',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+</script>
+             
+          <script type="text/javascript">
+        $.noConflict();
+        </script>
+        <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+        <script src="{{ asset('js/jquery-ui.js') }}"></script>
+        
+       
+ 
+  {% endblock %}
+  </body>
+</html>

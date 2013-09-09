@@ -1,0 +1,7 @@
+parameters:
+#    user_partage.example.class: User\PartageBundle\Example
+
+services:
+#    user_partage.example:
+#        class: %user_partage.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

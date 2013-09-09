@@ -1,0 +1,11 @@
+parameters:
+#    gestion_calendrier.example.class: Gestion\CalendrierBundle\Example
+
+
+services:
+    gesrnotiftion_calendrier.nbrnotif:
+        class: Gestion\CalendrierBundle\Notif\Notif
+        arguments: [ '@doctrine.orm.entity_manager','@service_container' ]
+    getnotiftion_entreprise.nbr:
+        class: Gestion\CalendrierBundle\Notif\NotifEntrepris
+        arguments: [ '@doctrine.orm.entity_manager','@service_container' ]

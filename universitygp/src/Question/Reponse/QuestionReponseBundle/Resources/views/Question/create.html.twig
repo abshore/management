@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+
+
+<form action="" method="post" {{ form_enctype(form) }}>
+    
+ <fieldset>
+  <legend>Question:</legend>
+  <table>
+      <tr><td>{{ form_label(form.matiere) }} </td><td>{{ form_widget(form.matiere) }}</td></tr>
+      <tr><td>{{ form_label(form.prof) }} </td><td>{{ form_widget(form.prof) }}</td></tr>
+      <tr> <td>{{ form_label(form.question) }} </td><td>{{ form_widget(form.question) }}</td></tr>
+      <tr> <td>{{ form_label(form.piece_jointe) }} </td><td>{{ form_widget(form.piece_jointe) }}</td></tr>
+	  <tr>{{form_rest(form)}}</tr>
+  </table>
+  </fieldset>
+    <input type="submit" class="btn btn-primary"/>
+</form>
+{#<script type="text/javascript" src="{{ asset('js/nicEdit.js') }}"></script>
+<script type="text/javascript">
+	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>#}
+{% endblock %}

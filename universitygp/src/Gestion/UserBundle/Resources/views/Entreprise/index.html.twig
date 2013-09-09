@@ -1,0 +1,141 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" />
+
+    <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+       <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Lastlogin</th>
+                <th>Expired</th>
+                <th>Expiresat</th>
+                <th>Effectifs</th>
+                <th>Activite</th>
+                <th>Localisation</th>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Mobile</th>
+                <th>Tel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+   {% if entity.enabled == false %}
+            <tr  class="danger">
+                <td><a href="{{ path('entreprise_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+                <td>{{ entity.email }}</td>
+                <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d ') }}{% endif %}</td>
+                <td>{{ entity.expired }}</td>
+                <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d ') }}{% endif %}</td>
+                <td>{{ entity.effectifs }}</td>
+                <td>{{ entity.activite }}</td>
+                <td>{{ entity.localisation }}</td>
+                <td>{{ entity.nom }}</td>
+
+          <td>  <img src="{{ asset('upload/' ~ entity.id ~'/' ~ entity.image)}}" alt="pas de photo" height="50" width="50" />
+ </td>
+                <td>{{ entity.mobile }}</td>
+                <td>{{ entity.tel }}</td>
+                <td>
+                <ul>
+                    
+                        <a class="active btn btn-success" href="#" url="{{ path('entreprise_editactiver', { 'id': entity.id }) }}">Activer</a>
+                   
+                   
+                </ul>
+                </td>
+            </tr>
+{% else %}
+ <tr>
+                <td><a href="{{ path('entreprise_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+                <td>{{ entity.email }}</td>
+                <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d ') }}{% endif %}</td>
+                <td>{{ entity.expired }}</td>
+                <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d ') }}{% endif %}</td>
+                <td>{{ entity.effectifs }}</td>
+                <td>{{ entity.activite }}</td>
+                <td>{{ entity.localisation }}</td>
+                <td>{{ entity.nom }}</td>
+
+          <td>  <img src="{{ asset('upload/' ~ entity.id ~'/' ~ entity.image)}}" alt="pas de photo" height="50" width="50" />
+ </td>
+                <td>{{ entity.mobile }}</td>
+                <td>{{ entity.tel }}</td>
+                <td>
+                <ul>
+                    
+                        <a class="desac btn btn-danger" href="#" url="{{ path('entreprise_editdesactiver', { 'id': entity.id }) }}">Désactiver</a>
+                   
+                       
+                </ul>
+                </td>
+            </tr>
+{% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div id="Cv" style="display: none;"></div>
+       
+    
+<script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+             
+       
+<script type="text/javascript">
+  $('a.desac').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: '300',
+                                            width: '300',
+                                            modal: true,
+                                            title: 'Valider ce compte           ',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+                                $('a.active').click(function() {
+                                    var url = $(this).attr('url');
+                                    $("#Cv").load(url, function() {
+                                        $(this).dialog({
+                                            height: '300',
+                                            width: '300',
+                                            modal: true,
+                                            title: 'Valider ce compte           ',
+                                            position: 'center',
+                                            overlay: {
+                                                backgroundColor: '#000',
+                                                opacity: 0.5
+                                            },
+                                            close: function() {
+
+                                               
+                                                $(this).dialog('close');
+                                            }
+
+                                        });
+                                    });
+                                });
+
+                              
+
+
+        </script>
+
+    {% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends "::base.html.twig" %}
+{% block body -%}
+   
+<div class="panel panel-info" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+    
+
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                 <th>Titre</th>
+                <th>Description</th>
+                <th>Débuté le</th>
+                <th>Fini le</th> 
+              
+                <th>Actions</th>
+            </tr>
+        </thead>
+           <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.libelleNouvelle }}</a></td>
+                <td>{{ entity.descriptionNouvelle |raw }}</td>
+                <td>{{ entity.dateDebutNouvelle|date('d-m-Y') }} </td>
+                <td>{{ entity.dateFinNouvelle|date('d-m-Y') }}</td>
+              
+                <td>
+                <ul>
+             <a class="btn btn-primary" href="{{ path('infoNouvelle_show', { 'id': entity.id }) }}">Visualiser</a>
+       
+           <a class="btn btn-primary" href="http://localhost{{asset(entity.UrlPieceJointe)}}">Télécharger</a>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        </div>
+        
+        
+
+    </div>
+
+
+    {% endblock %}

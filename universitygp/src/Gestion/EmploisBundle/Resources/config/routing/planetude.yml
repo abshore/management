@@ -1,0 +1,46 @@
+planetude:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:index" }
+
+planetude_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:show" }
+
+planetude_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:new" }
+
+planetude_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:create" }
+    requirements: { _method: post }
+
+planetude_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:edit" }
+
+planetude_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:update" }
+    requirements: { _method: post|put }
+
+planetude_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:delete" }
+    #requirements: { _method: post|delete }
+planetude_getniveau:
+    pattern:  /getNiveau
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:getNiveau" }
+    requirements: { _method: post }
+planetude_ajouterplan:
+    pattern:  /ajouterPlan
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:ajouterPlan" }
+    requirements: { _method: post }
+planetude_getNiveauModif:
+    pattern:  /{id}/getNiveauModif
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:getNiveauModif" }
+    requirements: { _method: get }
+planetude_modifierplan:
+    pattern:  /{id}/modifierPlan
+    defaults: { _controller: "GestionEmploisBundle:PlanEtude:modifierPlan" }
+    requirements: { _method: post }

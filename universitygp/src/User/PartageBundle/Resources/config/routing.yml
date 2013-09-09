@@ -1,0 +1,12 @@
+Partage_document_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: UserPartageBundle:Default:index }
+
+user_partage_document:
+    resource: "@UserPartageBundle/Resources/config/routing/document.yml"
+    prefix:   /document
+    
+
+user_partage_documentPersonnel:
+    resource: "@UserPartageBundle/Resources/config/routing/document personnel.yml"
+    prefix:   /documentPersonnel

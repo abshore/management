@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<h2>Sujet: </h2>
+<form action="">
+ <table class="table table-bordered">
+     <tr style="background-color: #dfdfdf;font: 14px/24px sans-serif;"><td>From :</td><td>{{list.user.username}}</td></tr>
+   <tr><td>Matiere :</td><td>{{list.matiere}}</td></tr>
+   <tr style="background-color: #dfdfdf;font: 14px/24px sans-serif;"><td>Question :</td><td>{{list.question|raw}}</td></tr></tr>
+  {%if list.pieceJointe!=null%}<tr> <td></td><td> <a href="http://localhost{{asset(list.pieceJointe)}}"> <span class="glyphicon glyphicon-paperclip">{{list.filename}}</span> </a></td></tr>{%endif%}
+    </table> 
+        {%if list2==null%}
+        <h4>aucune réponse pour le moment</h4>
+        {%else%}
+  <h2>Reponse:</h2>
+  <form action="">
+<table class="table table-bordered">
+     {%for item in list2 %}
+   <tr style="background-color: #dfdfdf;font: 14px/24px sans-serif;"><td>Reponse :</td><td>{{item.reponse|raw}}</td></tr></tr>
+  {%if item.pieceJointe!=null%}<tr> <td></td><td> <a href="http://localhost{{asset(list.pieceJointe)}}"> <span class="glyphicon glyphicon-paperclip">{{item.filename}}</span> </a></td></tr>{%endif%}
+    {%endfor%}
+    </table> 
+</form>	
+</form>	
+{%endif%}
+<p></p>
+
+{% endblock %}

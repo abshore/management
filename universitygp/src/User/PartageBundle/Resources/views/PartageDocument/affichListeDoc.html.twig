@@ -1,0 +1,61 @@
+{% extends "::base.html.twig" %}
+{% block body -%}
+   
+<div class="panel panel-info" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+    
+    <div class="panel-heading ">
+
+        <div style="text-align: right">
+             <a class="btn btn-primary" href="{{ path('document_personnel_add') }}">
+                Ajouter un nouveau document
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                 <th>Titre</th>
+                <th>Résumé</th>
+                <th>Partagé le</th>
+                <th>Modifié le</th>
+                <th>Valide jusqu'à</th>
+              <!--    <th>Expired</th>-->
+                <!-- <th>Expiresat</th>-->
+               <!--  <th>Nom</th>-->
+              <!--   <th>Prenom</th>-->
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+           <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.libelleDoc }}</a></td>
+                <td>{{ entity.resumeDoc |raw }}</td>
+                <td>{{ entity.datePartage|date('d-m-Y H:i:s') }} </td>
+                <td>{%if (entity.dateMAJ==null)%}----------{%else%}{{ entity.dateMAJ|date('d-m-Y H:i:s') }}{%endif%}</td>
+                <td>{{ entity.dateValidite|date('d-m-Y') }} </td>
+                <td>
+                <ul>
+                   
+                        <a class="btn btn-primary" href="{{ path('document_personnel_show', { 'id': entity.idDoc }) }}">Visualiser</a>
+                   
+                        <a class="btn btn-success" href="{{ path('document_personnel_edit', { 'id': entity.idDoc }) }}">Modifier</a>
+                        
+                        <a class="btn btn-warning" href="{{ path('document_personnel_delete', { 'id': entity.idDoc }) }}">Supprimer</a>
+                   
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        </div>
+        
+        
+
+    </div>
+
+
+    {% endblock %}

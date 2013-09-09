@@ -1,0 +1,72 @@
+{% extends "::base.html.twig" %}
+{% block body -%}
+   
+ <h1>Liste des documents</h1>
+<div style="width: 80%; margin-left: 10%;margin-top: 50px;" class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Moteur de recherche</h3>
+  </div>
+  <div class="panel-body">
+    <form  class="form-inline" role="form" action="{{ path('user_partage') }}" method="post">
+        <div class="form-group">
+          <input type="text" class="form-control" name="document" placeholder="Search">
+          
+ </div>
+            <div class="col-lg-3"> 
+            <select name="recherche" class="form-control">
+                <option value="titre">Titre</option>
+                <option value="nomPartageur">Nom partageur</option>
+                <option value="prenomPartageur">Préom partageur</option>
+                <option value="motCle">Mot clé</option>
+            {#     <option value="prenom">Prenom</option>
+                <option value="email">Email</option>  #}
+                
+</select>
+</div>
+            <button class="btn btn-default" type="submit">Rechercher</button>
+        </form>
+  </div>
+</div>
+   <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+         <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Résumé</th>
+                <th>Partagé le</th>
+		<th>Modifié le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('voir_doc', { 'idDoc;': entity.idDoc }) }}">{{ entity.idDoc }}</a></td>
+                <td>{{ entity.libelleDoc }}</td>
+                <td> {{ entity.resumeDoc |raw }} </td>
+                <td>{{ entity.datePartage|date('d-m-Y H:i:s') }}</a></td>
+				<td>{%if (entity.dateMAJ==null)%}----------{%else%}{{ entity.dateMAJ|date('d-m-Y H:i:s') }}{%endif%}</a></td>
+                <td>
+                <ul>
+                   
+                        <a class="btn btn-primary" href="{{ path('user_partage_show', { 'id': entity.idDoc }) }}">Visualiser</a>
+                   
+                        <a class="btn btn-success" href="{{ path('user_partage_edit', { 'id': entity.idDoc }) }}">Modifier</a>
+                        
+                        <a class="btn btn-warning" href="{{ path('user_partage_delete', { 'id': entity.idDoc }) }}">Supprimer</a>
+                   
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        
+            <a class="btn btn-primary" href="{{ path('user_partage_add') }}">
+                + ADD
+            </a>
+       
+    </ul>
+    {% endblock %}

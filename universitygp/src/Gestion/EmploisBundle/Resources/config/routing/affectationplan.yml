@@ -1,0 +1,46 @@
+affectationplan:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:index" }
+
+affectationplan_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:show" }
+
+affectationplan_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:new" }
+
+affectationplan_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:create" }
+    requirements: { _method: post }
+
+affectationplan_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:edit" }
+
+affectationplan_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:update" }
+    requirements: { _method: post|put }
+
+affectationplan_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:delete" }
+    #requirements: { _method: post|delete }
+affectationplan_getmatiere:
+    pattern:  /getMatiere
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:getMatiere" }
+    requirements: { _method: post }
+affectationplan_ajouterAffectation:
+    pattern:  /ajouterAffectation
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:ajouterAffectation" }
+    requirements: { _method: post }
+affectation_getgroupemodif:
+    pattern:  /{id}/getGroupeModif
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:getGroupeModif" }
+    requirements: { _method: get }
+affectation_modifieraffectation:
+    pattern:  /{id}/modifierAffectation
+    defaults: { _controller: "GestionEmploisBundle:AffectationPlan:modifierAffectaion" }
+    requirements: { _method: post }

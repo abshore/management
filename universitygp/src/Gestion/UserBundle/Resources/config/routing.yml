@@ -1,0 +1,62 @@
+gestion_user_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GestionUserBundle:Default:index }
+
+GestionUserBundle_etudiant:
+    resource: "@GestionUserBundle/Resources/config/routing/etudiant.yml"
+    prefix:   /etudiant
+    
+
+GestionUserBundle_prof:
+    resource: "@GestionUserBundle/Resources/config/routing/prof.yml"
+    prefix:   /prof
+
+GestionUserBundle_admin:
+    resource: "@GestionUserBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
+
+
+GestionUserBundle_entreprise:
+    resource: "@GestionUserBundle/Resources/config/routing/entreprise.yml"
+    prefix:   /entreprise
+
+etudiant_registration:
+    pattern:  /register/etudiant
+    defaults: { _controller: GestionUserBundle:RegistrationEtudiant:register }
+entreprise_registration:
+    pattern:  /register/entreprise
+    defaults: { _controller: GestionUserBundle:RegistrationEntreprise:register }
+
+prof_registration:
+    pattern:  /register/prof
+    defaults: { _controller: GestionUserBundle:RegistrationProf:register }
+admin_registration:
+    pattern:  /register/admin
+    defaults: { _controller: GestionUserBundle:RegistrationAdmin:register }
+    
+tableau_board:
+    pattern: /TableauBoard
+    defaults: { _controller: GestionUserBundle:Default:Dashboard }
+
+GestionUserBundle_formation:
+    resource: "@GestionUserBundle/Resources/config/routing/formation.yml"
+    prefix:   /formation
+
+GestionUserBundle_experience:
+    resource: "@GestionUserBundle/Resources/config/routing/experience.yml"
+    prefix:   /experience
+
+GestionUserBundle_langue:
+    resource: "@GestionUserBundle/Resources/config/routing/langue.yml"
+    prefix:   /langue
+
+GestionUserBundle_cursus:
+    resource: "@GestionUserBundle/Resources/config/routing/cursus.yml"
+    prefix:   /cursus
+
+
+
+
+
+
+

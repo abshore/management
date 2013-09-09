@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<h2>Reponse: </h2>
+<form action="{{path('reponse_question',{'id' : list.id})}}">
+ <table class="table table-bordered">
+     <tr style="background-color: #dfdfdf;font: 14px/24px sans-serif;"><td>From :</td><td>{{list.user.username}}</td></tr>
+   <tr ><td>Matiere :</td><td>{{list.matiere}}</td></tr>
+   <tr style="background-color: #dfdfdf;font: 14px/24px sans-serif;"><td>Reponse :</td><td>{{list.reponse|raw}}</td></tr></tr>
+  {%if list.pieceJointe!=null%}<tr> <td></td><td> <a href="http://localhost{{asset(list.pieceJointe)}}"> <span class="glyphicon glyphicon-paperclip">{{list.filename}}</span> </a></td></tr>{%endif%}
+    </table> 
+</form>	
+<p></p>
+<a href="{{ path('reponse_homepage') }}">Accueil</a>
+{% endblock %}

@@ -1,0 +1,36 @@
+gestion_emplois_homepage:
+    pattern:  /gestemploi
+    defaults: { _controller: GestionEmploisBundle:Default:index }
+GestionEmploisBundle_matiere:
+    resource: "@GestionEmploisBundle/Resources/config/routing/matiere.yml"
+    prefix:   /matiere
+GestionEmploisBundle_panier:
+    resource: "@GestionEmploisBundle/Resources/config/routing/panier.yml"
+    prefix:   /panier
+GestionEmploisBundle_profilclasse:
+    resource: "@GestionEmploisBundle/Resources/config/routing/profilclasse.yml"
+    prefix:   /profilclasse
+GestionEmploisBundle_classe:
+    resource: "@GestionEmploisBundle/Resources/config/routing/classe.yml"
+    prefix:   /classe
+GestionEmploisBundle_formation:
+    resource: "@GestionEmploisBundle/Resources/config/routing/formation.yml"
+    prefix:   /formatione
+GestionEmploisBundle_diplome:
+    resource: "@GestionEmploisBundle/Resources/config/routing/diplome.yml"
+    prefix:   /diplome
+GestionEmploisBundle_planetude:
+    resource: "@GestionEmploisBundle/Resources/config/routing/planetude.yml"
+    prefix:   /planetude
+GestionEmploisBundle_affectationplan:
+    resource: "@GestionEmploisBundle/Resources/config/routing/affectationplan.yml"
+    prefix:   /affectationplan
+GestionEmploisBundle_salle:
+    resource: "@GestionEmploisBundle/Resources/config/routing/salle.yml"
+    prefix:   /salle
+GestionEmploisBundle_emploi:
+    resource: "@GestionEmploisBundle/Resources/config/routing/emploi.yml"
+    prefix:   /emploi
+GestionEmploisBundle_affectationetudiant:
+    resource: "@GestionEmploisBundle/Resources/config/routing/affectationetudiant.yml"
+    prefix:   /affectationetudiant

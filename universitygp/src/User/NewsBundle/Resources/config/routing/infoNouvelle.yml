@@ -1,0 +1,7 @@
+infoNouvelle:
+    pattern:  /
+    defaults: { _controller: UserNewsBundle:InfoNouvelle:affichListeNouvelle }
+infoNouvelle_show:
+    pattern:  /show/{id}
+    defaults: { _controller: UserNewsBundle:InfoNouvelle:show }
+

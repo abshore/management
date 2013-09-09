@@ -1,0 +1,52 @@
+emploi:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:Emploi:index" }
+
+emploi_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:Emploi:show" }
+
+emploi_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:Emploi:new" }
+
+emploi_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:Emploi:create" }
+    requirements: { _method: post }
+
+emploi_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:Emploi:edit" }
+
+emploi_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:Emploi:update" }
+    requirements: { _method: post|put }
+
+emploi_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:Emploi:delete" }
+    #requirements: { _method: post|delete }
+emploi_getmatiere:
+    pattern:  /getMatiere
+    defaults: { _controller: "GestionEmploisBundle:Emploi:getMatiere" }
+    requirements: { _method: post }
+emploi_ajouterSeance:
+    pattern:  /ajouterSeance
+    defaults: { _controller: "GestionEmploisBundle:Emploi:ajouterSeance" }
+    requirements: { _method: post }
+emploi_getgroupemodif:
+    pattern:  /{id}/getGroupeModif
+    defaults: { _controller: "GestionEmploisBundle:Emploi:getGroupeModif" }
+    requirements: { _method: get }
+emploi_modifierSeance:
+    pattern:  /{id}/modifierSeance
+    defaults: { _controller: "GestionEmploisBundle:Emploi:modifierSeance" }
+    requirements: { _method: post }
+emploi_voirEmplois:
+    pattern:  /voirEmplois
+    defaults: { _controller: "GestionEmploisBundle:Emploi:voirEmplois" }
+emploi_emploiClasse:
+    pattern: /emploiClasse
+    defaults: { _controller: "GestionEmploisBundle:Emploi:emploiClasse"}

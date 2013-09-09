@@ -1,0 +1,39 @@
+evenement:
+    pattern:  /
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:index" }
+evenementnotif:
+    pattern:  /evenementnotif
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:indexnotif" }
+  
+evenement_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:show" }
+evenement_shownotif:
+    pattern:  /{id}/shownotif
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:shownotif" }
+
+evenement_new:
+    pattern:  /new
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:new" }
+evenement_calendrier:
+    pattern:  /calendrier
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:calendrier" }
+
+evenement_create:
+    pattern:  /create
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:create" }
+    requirements: { _method: post }
+
+evenement_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:edit" }
+
+evenement_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:update" }
+    requirements: { _method: post|put }
+
+evenement_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionCalendrierBundle:Evenement:delete" }
+    requirements: { _method: post|delete }

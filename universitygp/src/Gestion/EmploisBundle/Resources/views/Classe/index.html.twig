@@ -1,0 +1,104 @@
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        <div style="text-align: left; float: left; text-decoration: underline;font-size: larger">Liste des Classes</div>
+        <div style="text-align: right">
+            <a id="ajoutClasse" class="btn btn-primary" url="{{ path('classe_new') }}" href="#">
+                Ajouter Classe
+            </a>
+            <a id="affectation" class="btn btn-default" href="{{ path('affectationetudiant') }}">
+                Affectation des étudiants
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Code</th>
+                    <th>Nbgroupe</th>
+                    <th>Formation</th>
+                    <th>Diplôme</th>
+                    <th>Niveau</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for entity in entities %}
+                    <tr>
+                        <td><a>{{ entity.id }}</a></td>
+                        <td>{{ entity.code }}</td>
+                        <td>{{ entity.nbGroupe }}</td>
+                        <td>{{ entity.formation }}</td>
+                        <td id="diplome">{{ entity.diplome }}</td>
+                        <td>{{ entity.niveau }}</td>
+                        <td style="text-align: right">
+                            <a class="btn btn-danger btn-xs" href="{{ path('classe_delete', { 'id': entity.id }) }}" onclick="return confirm('Vous êtes sûr de vouloir supprimer cette rubrique?');">Supprimer</a>
+                            <a class="modifClasse btn btn-success btn-xs" href="#" url="{{ path('classe_edit', { 'id': entity.id }) }}">Modifier</a>
+                        </td>
+                    </tr>
+        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div id="Classe" style="display: none;"></div>
+    <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script type="text/javascript">
+        
+                        $('#ajoutClasse').click(function() {
+                            var url = $(this).attr('url');
+                            $("#Classe").load(url, function() {
+                                $(this).dialog({
+                                    height: 'auto',
+                                    width: 'auto',
+                                    modal: true,
+                                    title: 'Ajouter Classe',
+                                    position: 'center',
+                                    overlay: {
+                                        backgroundColor: '#000',
+                                        opacity: 0.5
+                                    },
+                                    close: function() {
+
+
+                                        $(this).dialog('close');
+                                    }
+
+                                });
+                            });
+                        });
+
+                        $('a.modifClasse').click(function() {
+                            var url = $(this).attr('url');
+                            $("#Classe").load(url, function() {
+                                $(this).dialog({
+                                    height: 'auto',
+                                    width: 'auto',
+                                    modal: true,
+                                    title: 'Modifier Classe',
+                                    position: 'center',
+                                    overlay: {
+                                        backgroundColor: '#000',
+                                        opacity: 0.5
+                                    },
+                                    close: function() {
+
+
+                                        $(this).dialog('close');
+                                    }
+
+                                });
+                            });
+                        });
+
+
+
+        </script>

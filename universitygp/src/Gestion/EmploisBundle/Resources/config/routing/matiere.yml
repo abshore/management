@@ -1,0 +1,30 @@
+matiere:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:Matiere:index" }
+
+matiere_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:Matiere:show" }
+
+matiere_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:Matiere:new" }
+
+matiere_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:Matiere:create" }
+    requirements: { _method: post }
+
+matiere_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:Matiere:edit" }
+
+matiere_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:Matiere:update" }
+    requirements: { _method: post|put }
+
+matiere_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:Matiere:delete" }
+    #requirements: { _method: post|delete }

@@ -1,0 +1,7 @@
+parameters:
+#    gestion_offre.example.class: Gestion\OffreBundle\Example
+
+services:
+#    gestion_offre.example:
+#        class: %gestion_offre.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

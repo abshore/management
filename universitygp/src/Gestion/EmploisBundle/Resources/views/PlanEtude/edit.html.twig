@@ -1,0 +1,76 @@
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+<form action="{{ path('planetude_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <input type="hidden" name="_method" value="PUT" />
+        {{ form_widget(edit_form) }}
+    <div class="panel-footer" style="text-align: right">
+        <p>
+            <input type="button" id="btn" class="btn btn-info btn-xs" value="Modifier"/>
+        </p></div>
+</form>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $.get("{{ path('planetude_getNiveauModif', { 'id': entity.id }) }}",
+                function(data) {
+                    $('#gestion_emploisbundle_planetudetype_niveau').empty();
+                    $('#gestion_emploisbundle_planetudetype_niveau').append(data.niveaux);
+                    $('#gestion_emploisbundle_planetudetype_niveau').val(data.niveauPlan);
+                },
+                "json");
+    });
+
+    $('#gestion_emploisbundle_planetudetype_diplome').change(function() {
+        var diplome = $('#gestion_emploisbundle_planetudetype_diplome').val();
+        $.post("{{ path('planetude_getniveau') }}", {
+            diplome: diplome
+        }, function(data) {
+            $('#gestion_emploisbundle_planetudetype_niveau').empty();
+            $('#gestion_emploisbundle_planetudetype_niveau').append(data.niveaux);
+        },
+                "json"
+                );
+    });
+    $('#btn').click(function() {
+
+        var formation = $('#gestion_emploisbundle_planetudetype_formation').val();
+        var diplome = $('#gestion_emploisbundle_planetudetype_diplome').val();
+        var niveau = $('#gestion_emploisbundle_planetudetype_niveau').val();
+        var matiere = $('#gestion_emploisbundle_planetudetype_matiere').val();
+        var nbHeure = $('#gestion_emploisbundle_planetudetype_nbHeure').val();
+        var nbHCours = $('#gestion_emploisbundle_planetudetype_nbHCours').val();
+        var nbHTD = $('#gestion_emploisbundle_planetudetype_nbHTD').val();
+        var nbHTP = $('#gestion_emploisbundle_planetudetype_nbHTP').val();
+        var chapitres = $('#gestion_emploisbundle_planetudetype_chapitres').val();
+        var s = parseInt(nbHCours) + parseInt(nbHTD) + parseInt(nbHTP);
+        var r = parseInt(nbHeure);
+        if (r < s) {
+            alert('Veuillez vérifier le Nombre d\'heure d\'enseignement de la matiere');
+        }
+        else {
+            $.post("{{ path('planetude_modifierplan', { 'id': entity.id }) }}", {
+                formation: formation,
+                diplome: diplome,
+                niveau: niveau,
+                matiere: matiere,
+                nbHeure: nbHeure,
+                nbHCours: nbHCours,
+                nbHTD: nbHTD,
+                nbHTP: nbHTP,
+                chapitres: chapitres
+            }, function(data) {
+                alert(data.msg);
+                $('#Classe').dialog('close');
+                self.location.reload();
+            },
+                    "json"
+                    );
+        }
+
+    });
+    </script> 

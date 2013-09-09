@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+{% block body -%}
+   
+<div class="panel panel-info" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+    
+    <div class="panel-heading ">
+
+        <div style="text-align: right">
+             <a class="btn btn-primary" href="{{ path('nouvelle_add') }}">
+                Ajouter une nouvelle
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                 <th>Titre</th>
+                <th>Description</th>
+                <th>Débuté le</th>
+                <th>Fini le</th> 
+                <th>Validté</th> 
+                <th>Actions</th>
+            </tr>
+        </thead>
+           <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.libelleNouvelle }}</a></td>
+                <td>{{ entity.descriptionNouvelle |raw }}</td>
+                <td>{{ entity.dateDebutNouvelle|date('d-m-Y') }} </td>
+                <td>{{ entity.dateFinNouvelle|date('d-m-Y') }}</td>
+            <td>{%if (entity.isValide==false)%}Non valide{%else%}Valide{%endif%}</td>
+              
+                <td>
+                <ul>
+                   
+                        <a class="btn btn-primary" href="{{ path('nouvelle_show', { 'id': entity.id }) }}">Visualiser</a>
+                   
+                        <a class="btn btn-success" href="{{ path('nouvelle_edit', { 'id': entity.id }) }}">Modifier</a>
+                        
+                        <a class="btn btn-warning" href="{{ path('nouvelle_delete', { 'id': entity.id }) }}">Supprimer</a>
+                   
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        </div>
+        
+        
+
+    </div>
+
+
+    {% endblock %}

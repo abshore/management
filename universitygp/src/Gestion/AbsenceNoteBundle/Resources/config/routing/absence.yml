@@ -1,0 +1,38 @@
+absence:
+    pattern:  /
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:accueil" }
+absence_gestion:
+    pattern: /gestionAbsence
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:index" }
+absence_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:show" }
+
+absence_new:
+    pattern:  /new
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:new" }
+
+absence_create:
+    pattern:  /create
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:create" }
+    requirements: { _method: post }
+
+absence_edit:
+    pattern:  /{id}/{dat}/edit
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:modifier" }
+
+absence_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:update" }
+    requirements: { _method: post|put }
+
+absence_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:delete" }
+    requirements: { _method: post|delete }
+abcense_valider:
+    pattern: /validerAbsence
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:valider" }
+abcense_modifierAbsence:
+    pattern: /modifierAbsence
+    defaults: { _controller: "GestionAbsenceNoteBundle:Absence:modifierAbsence" }

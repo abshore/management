@@ -1,0 +1,108 @@
+<link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+<div class="panel panel-info">
+    <div class="panel-heading ">
+        <div style="text-align: left; float: left; text-decoration: underline;font-size: larger">Liste des Classes</div>
+        <div style="text-align: right">
+            <a id="ajoutAffectation" class="btn btn-primary" url="{{ path('affectationetudiant_new') }}" href="#">
+                Ajouter affectation
+            </a>
+
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Classe</th>
+                    <th>Groupe</th>
+                    <th>Nbre d'etudiants</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('affectationetudiant_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.classe }}</td>
+                        <td>{{ entity.groupe }}</td>
+                        <td>{{ entity.etudiants.count }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a class="btn btn-danger btn-xs" href="{{ path('affectationetudiant_delete', { 'id': entity.id }) }}" onclick="return confirm('Vous êtes sûr de vouloir supprimer cette rubrique?');">Supprimer</a>
+                                </li>
+                                <li>
+                                    <a class="modifAffectation btn btn-success btn-xs" href="#" url="{{ path('affectationetudiant_edit', { 'id': entity.id }) }}">Modifier</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        {% endfor %}
+                </tbody>
+            </table>
+            <div class="panel-footer" style="text-align: left">
+            <a class="" href="{{ path('classe') }}">
+                <i class="glyphicon glyphicon-circle-arrow-left">retour</i>
+            </a>
+        </div>
+        </div>
+        
+    </div>
+
+    <div id="Affectation" style="display: none;"></div>
+    <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script type="text/javascript">
+                                        $('#ajoutAffectation').click(function() {
+                                            var url = $(this).attr('url');
+                                            $("#Affectation").load(url, function() {
+                                                $(this).dialog({
+                                                    height: 'auto',
+                                                    width: '300',
+                                                    modal: true,
+                                                    title: 'Ajouter Affectation',
+                                                    position: 'center',
+                                                    overlay: {
+                                                        backgroundColor: '#000',
+                                                        opacity: 0.5
+                                                    },
+                                                    close: function() {
+
+
+                                                        $(this).dialog('close');
+                                                    }
+
+                                                });
+                                            });
+                                        });
+
+                                        $('a.modifAffectation').click(function() {
+                                            var url = $(this).attr('url');
+                                            $("#Affectation").load(url, function() {
+                                                $(this).dialog({
+                                                    height: 'auto',
+                                                    width: '300',
+                                                    modal: true,
+                                                    title: 'Modifier Affectation',
+                                                    position: 'center',
+                                                    overlay: {
+                                                        backgroundColor: '#000',
+                                                        opacity: 0.5
+                                                    },
+                                                    close: function() {
+
+
+                                                        $(this).dialog('close');
+                                                    }
+
+                                                });
+                                            });
+                                        });
+
+
+
+        </script>       

@@ -1,0 +1,76 @@
+<?php
+
+namespace Gestion\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * EntrepriseUser
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Gestion\UserBundle\Entity\EntrepriseUserRepository")
+ */
+class EntrepriseUser
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="User",inversedBy="notif_entreprise_user")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+    /**
+     * 
+     * @ORM\ManyToOne(targetEntity="Entreprise",inversedBy="notif_entreprise")
+     * @ORM\JoinColumn(name="entreprise_id", referencedColumnName="id")
+     */
+    private $entreprise;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etat", type="integer")
+     */
+    private $etat;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param integer $etat
+     * @return EntrepriseUser
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return integer 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+}

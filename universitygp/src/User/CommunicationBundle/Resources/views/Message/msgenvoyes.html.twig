@@ -1,0 +1,26 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<h3>Messages envoyés :</h3>
+
+</br></br>
+{% if list==null%}
+<div class="alert alert-info">boite d'envoi vide</div>
+
+{% else %}
+
+<table class="table table-condensed">
+ <tr><td>Action</td><td>Destinataire</td><td>sujet</td><td>Envoyé Le :</td></tr>
+{# table body #}
+{% for item in pagination %}
+<tr {% if loop.index is odd %} style="background-color: #dfdfdf;font: 14px/24px sans-serif;"{% endif %}>
+    <td> <a href="{{ path('delete_msg',{'id':item.id}) }}"><i class="glyphicon glyphicon-trash"></i></a><td>{{item.destination}}</td></td><td><a href="{{path('detail_envoi',{'id': item.id})}}">{{item.subject}}</a></td><td>{{item.datemsg|date()}}</td></tr>
+   
+{% endfor %}
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+	{%endif%}
+
+{% endblock %}

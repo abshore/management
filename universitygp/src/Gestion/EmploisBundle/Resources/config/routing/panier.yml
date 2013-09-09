@@ -1,0 +1,38 @@
+panier:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:Panier:index" }
+
+panier_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:Panier:show" }
+
+panier_new:
+    pattern:  /formAjoutPanier
+    defaults: { _controller: "GestionEmploisBundle:Panier:formAjoutPanier" }
+
+panier_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:Panier:create" }
+    requirements: { _method: post }
+
+panier_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:Panier:edit" }
+
+panier_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:Panier:update" }
+    requirements: { _method: post|put }
+
+panier_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:Panier:delete" }
+    requirements: { _method: post|delete }
+panier_ajout:
+    pattern:  /ajouterPanier
+    defaults: { _controller: "GestionEmploisBundle:Panier:ajouterPanier" }
+    requirements: { _method: post }
+get_matierepanier:
+    pattern:  /getMatiere
+    defaults: { _controller: "GestionEmploisBundle:Panier:getMatiere" }
+    requirements: { _method: get }

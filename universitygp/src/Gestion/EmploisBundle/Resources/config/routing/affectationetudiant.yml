@@ -1,0 +1,42 @@
+affectationetudiant:
+    pattern:  /
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:index" }
+
+affectationetudiant_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:show" }
+
+affectationetudiant_new:
+    pattern:  /new
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:new" }
+
+affectationetudiant_create:
+    pattern:  /create
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:create" }
+    requirements: { _method: post }
+
+affectationetudiant_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:edit" }
+
+affectationetudiant_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:update" }
+    requirements: { _method: post|put }
+
+affectationetudiant_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:delete" }
+    #requirements: { _method: post|delete }
+affectationetudiant_ajouterAffectation:
+    pattern:  /ajouterAffectation
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:ajouterAffectation" }
+    requirements: { _method: post }
+affectationetudiant_getgroupemodif:
+    pattern:  /{id}/getGroupeModif
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:getGroupeModif" }
+    requirements: { _method: get }
+affectationetudiant_modifierAffectation:
+    pattern:  /{id}/modifierAffectation
+    defaults: { _controller: "GestionEmploisBundle:AffectationEtudiant:modifierAffectation" }
+    requirements: { _method: post }

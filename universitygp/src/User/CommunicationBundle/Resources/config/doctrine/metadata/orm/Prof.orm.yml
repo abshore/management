@@ -1,0 +1,25 @@
+Prof:
+    type: entity
+    table: prof
+    fields:
+        nom:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        prenom:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+    oneToOne:
+        id:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

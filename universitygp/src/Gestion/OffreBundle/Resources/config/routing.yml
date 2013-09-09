@@ -1,0 +1,13 @@
+gestion_offre_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GestionOffreBundle:Default:index }
+
+GestionOffreBundle_emploie:
+    resource: "@GestionOffreBundle/Resources/config/routing/emploie.yml"
+    prefix:   /emploie
+
+GestionOffreBundle_stage:
+    resource: "@GestionOffreBundle/Resources/config/routing/stage.yml"
+    prefix:   /stage
+
+

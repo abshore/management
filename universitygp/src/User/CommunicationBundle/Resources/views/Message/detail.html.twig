@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<h1>Détail: </h1>
+<form action="{{path('reponse_msg',{'id' : list.id})}}">
+ <table class="table table-bordered">
+     <tr><td>From :</td><td>{{list.user.username}}</td></tr>
+   <tr><td>subject :</td><td>{{list.subject}}</td></tr>
+   <tr><td></td><td>{{list.corps|raw}}</td></tr></tr>
+  {%if list.pieceJointe!=null%}<tr> <td></td><td> <a href="http://localhost{{asset(list.pieceJointe)}}"> <span class="glyphicon glyphicon-paperclip">{{list.filename}}</span> </a></td></tr>{%endif%}
+    </table> 
+<input type="submit" class="btn btn-primary" value="repondre"/>
+<a href="{{path('reponsetransf_msg',{'id' : list.id,'filename' : list.filename})}}" class="btn btn-primary">Transférer</a>
+</form>
+
+<p></p>
+{% endblock %}
